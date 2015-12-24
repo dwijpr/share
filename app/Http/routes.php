@@ -25,12 +25,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function(){
-    return view('welcome');
+Route::group(['middleware' => ['web']], function(){
+    Route::get('/', function(){
+        return view('welcome');
+    });
+
+    Route::auth();
+
+    Route::get('tasks', 'TaskController@index');
+    Route::get('task', 'TaskController@store');
+    Route::delete('task/{task}', 'TaskController@destroy');
 });
-
-Route::auth();
-
-Route::get('tasks', 'TaskController@index');
-Route::get('task', 'TaskController@store');
-Route::delete('task/{task}', 'TaskController@destroy');
