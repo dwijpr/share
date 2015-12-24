@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Task;
+
 class TaskController extends Controller
 {
     public function __construct(){
@@ -14,8 +16,9 @@ class TaskController extends Controller
     }
 
     public function index(Request $request){
+        $tasks = Task::where('user_id', $request->user()->id)->get();
         return view('tasks.index', [
-            'tasks' => [],
+            'tasks' => $tasks,
         ]);
     }
 
@@ -23,5 +26,9 @@ class TaskController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255'
         ]);
+        $request->user()->tasks()->create([
+            'name' => $request->name,
+        ]);
+        return redirect('tasks');
     }
 }
