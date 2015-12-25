@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class Authenticate
 {
@@ -21,6 +22,13 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
+                Session::flash(
+                    'message', [
+                        'title' => 'Unauthorized Access',
+                        'type' => 'warning',
+                        'text' => "Please login first",
+                    ]
+                );
                 return redirect()->guest('login');
             }
         }
