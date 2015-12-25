@@ -27,7 +27,7 @@ class LogSuccessfulLogout
     public function handle(Logout $event)
     {
         fmsgs([
-            'title' => 'Bye User',
+            'title' => 'Bye',
             'type' => 'info',
             'text' => "Don't forget to come back",
         ]);

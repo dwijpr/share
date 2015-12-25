@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+use Illuminate\Support\Facades\Auth;
+
 class LogSuccessfulLogin
 {
     /**
@@ -26,12 +28,11 @@ class LogSuccessfulLogin
      */
     public function handle(Login $event)
     {
-        app('log')->debug('LogSuccessfulLogin');
         fmsgs([
             'id'    => 'attempt',
             'title' => 'Successfully Login',
             'type'  => 'success',
-            'text'  => "Hi user, Welcome!",
+            'text'  => "Hi ".Auth::user()->name.", Welcome!",
         ]);
     }
 }

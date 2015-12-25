@@ -74,24 +74,4 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
-
-    public function register(Request $request)
-    {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            fmsgs([
-                'title' => 'Error Validating Form',
-                'type' => 'error',
-                'text' => "Please recheck your form inputs",
-            ]);
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        Auth::login($this->create($request->all()));
-
-        return redirect($this->redirectPath());
-    }
 }
