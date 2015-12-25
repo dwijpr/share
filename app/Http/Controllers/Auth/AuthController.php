@@ -80,13 +80,11 @@ class AuthController extends Controller
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
-            Session::flash(
-                'message', [
-                    'title' => 'Error Validating Form',
-                    'type' => 'error',
-                    'text' => "Please recheck your form inputs",
-                ]
-            );
+            fmsgs([
+                'title' => 'Error Validating Form',
+                'type' => 'error',
+                'text' => "Please recheck your form inputs",
+            ]);
             $this->throwValidationException(
                 $request, $validator
             );

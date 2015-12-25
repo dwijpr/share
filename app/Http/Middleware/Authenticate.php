@@ -22,13 +22,11 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                Session::flash(
-                    'message', [
-                        'title' => 'Unauthorized Access',
-                        'type' => 'warning',
-                        'text' => "Please login first",
-                    ]
-                );
+                fmsgs([
+                    'title' => 'Unauthorized Access',
+                    'type' => 'warning',
+                    'text' => "Please login first",
+                ]);
                 return redirect()->guest('login');
             }
         }

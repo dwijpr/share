@@ -84,18 +84,20 @@
     <script src="{{ asset('assets/thirdparty/pnotify/dist/pnotify.js') }}"></script>
     <script src="{{ asset('assets/thirdparty/pnotify/dist/pnotify.buttons.js') }}"></script>
 
-    @if(Session::has('message'))
+    @if(fmsgs())
         <script type="text/javascript">
             $(function(){
                 PNotify.prototype.options.styling = "fontawesome";
-                new PNotify({
-                    title: '{{ Session::get('message')['title'] }}',
-                    text: '{{ Session::get('message')['text'] }}',
-                    type: '{{ Session::get('message')['type'] }}',
-                    buttons:{
-                        sticker: false,
-                    },
-                });
+                @foreach (fmsgs() as $message)
+                    new PNotify({
+                        title: '{{ $message['title'] }}',
+                        text: '{{ $message['text'] }}',
+                        type: '{{ $message['type'] }}',
+                        buttons:{
+                            sticker: false,
+                        },
+                    });
+                @endforeach
             });
         </script>
     @endif
