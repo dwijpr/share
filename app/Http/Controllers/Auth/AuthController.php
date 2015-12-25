@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Session;
+
 class AuthController extends Controller
 {
     /*
@@ -68,5 +72,27 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            Session::flash(
+                'message', [
+                    'title' => 'Error Validating Form',
+                    'type' => 'error',
+                    'text' => "Please recheck your form inputs",
+                ]
+            );
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        Auth::login($this->create($request->all()));
+
+        return redirect($this->redirectPath());
     }
 }
