@@ -26,13 +26,11 @@ class LogAuthenticationAttempt
      */
     public function handle(Attempting $event)
     {
-        //
         fmsgs([
             'id'    => 'attempt',
             'title' => 'Error Credentials',
             'type'  => 'error',
             'text'  => "Unknown username or password",
         ]);
-        app('log')->debug('Attempting');
     }
 }
