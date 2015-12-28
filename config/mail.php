@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => "noreply@app.dev", 'name' => "No Reply [App.dev]"],
 
     /*
     |--------------------------------------------------------------------------
