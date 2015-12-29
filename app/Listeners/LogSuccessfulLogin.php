@@ -32,7 +32,10 @@ class LogSuccessfulLogin
             'id'    => 'attempt',
             'title' => 'Successfully Login',
             'type'  => 'success',
-            'text'  => "Hi ".Auth::user()->name.", Welcome!",
+            'text'  => 
+                "Hi "
+                .(Auth::user()->isAdmin()?'admin ':'')
+                .Auth::user()->name.", Welcome!",
         ]);
     }
 }

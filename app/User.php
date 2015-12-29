@@ -44,4 +44,8 @@ class User extends Authenticatable
             :$role
         );
     }
+
+    public function isAdmin(){
+        return $this->hasRole('admin');
+    }
 }
