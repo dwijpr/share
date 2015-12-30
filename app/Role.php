@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace ShareApp;
 
 use Illuminate\Database\Eloquent\Model;
 

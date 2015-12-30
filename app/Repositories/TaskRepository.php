@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace ShareApp\Repositories;
 
-use App\User;
-use App\Task;
+use ShareApp\User;
+use ShareApp\Task;
 
 class TaskRepository{
 

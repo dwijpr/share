@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners;
+namespace ShareApp\Listeners;
 
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Queue\InteractsWithQueue;

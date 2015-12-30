@@ -1,6 +1,6 @@
 <?php
 
-use App\Task;
+use ShareApp\Task;
 use Illuminate\Http\Request;
 
 /*

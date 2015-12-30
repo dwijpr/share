@@ -1,0 +1,6 @@
+{
+    "name": "ShareApp",
+    "dependencies": {
+      "bootstrap": "~3.3.6"
+    }
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners;
+namespace ShareApp\Listeners;
 
 use Illuminate\Auth\Events\Attempting;
 use Illuminate\Queue\InteractsWithQueue;

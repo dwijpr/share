@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Policies;
+namespace ShareApp\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-use App\User;
-use App\Task;
+use ShareApp\User;
+use ShareApp\Task;
 
 class TaskPolicy
 {

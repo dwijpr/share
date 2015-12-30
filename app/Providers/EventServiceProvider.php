@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace ShareApp\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -14,13 +14,13 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'Illuminate\Auth\Events\Logout' => [
-            'App\Listeners\LogSuccessfulLogout',
+            'ShareApp\Listeners\LogSuccessfulLogout',
         ],
         'Illuminate\Auth\Events\Attempting' => [
-            'App\Listeners\LogAuthenticationAttempt',
+            'ShareApp\Listeners\LogAuthenticationAttempt',
         ],
         'Illuminate\Auth\Events\Login' => [
-            'App\Listeners\LogSuccessfulLogin',
+            'ShareApp\Listeners\LogSuccessfulLogin',
         ],
     ];
 
