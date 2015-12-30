@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
-use App\User;
-use App\Role;
-use App\Permission;
+use ShareApp\User;
+use ShareApp\Role;
+use ShareApp\Permission;
 
 class UsersTableSeeder extends Seeder
 {
@@ -41,5 +41,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'owljpr@gmail.com',
             'password' => bcrypt('asdfasdf'),
         ]);
+
+        for($i = 0;$i < 10;$i++){
+            factory(User::class)->create();
+        }
     }
 }
