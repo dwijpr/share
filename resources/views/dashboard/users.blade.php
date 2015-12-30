@@ -1,6 +1,25 @@
 @extends('layouts.dashboard')
 
-@section('dashboard-title', 'Overview')
+
+@section('navsidebar')
+
+    <li>
+        <a href="/dashboard">
+            Overview
+        </a>
+    </li>
+    <li class="active">
+        <a href="/dashboard/users">
+            Users
+        </a>
+    </li>
+    <li><a href="#">Reports</a></li>
+
+@endsection
+
+
+@section('dashboard-title', 'Users')
+
 
 @section('_content')
 
@@ -27,6 +46,7 @@
     </div>
     </div>
     <h2 class="sub-header">Section title</h2>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
