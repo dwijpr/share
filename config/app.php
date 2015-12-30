@@ -28,6 +28,8 @@ return [
 
     'debug' => env('APP_DEBUG', false),
 
+    'name' => env('APP_NAME', 'Laravel'),
+
     /*
     |--------------------------------------------------------------------------
     | Application URL
