@@ -48,10 +48,32 @@ class DashboardController extends Controller
         return view('dashboard.users.new');
     }
 
+    public function userEdit(User $user){
+        return view('dashboard.users.edit', [
+            'user' => $user
+        ]);
+    }
+
+    public function userUpdate(Request $request, User $user){
+        $this->validate($request, AuthController::validationData($user->id));
+
+        User::find($user->id)->update(
+            AuthController::userData($request->all())
+        );
+
+        fmsgs([
+            'title' => 'User Updated',
+            'type'  => 'success',
+            'text'  => "Successfully updating the user, check the update!",
+        ]);
+
+        return redirect()->back();
+    }
+
     public function userCreate(Request $request){
         $this->validate($request, AuthController::validationData());
 
-        AuthController::create($request->all());
+        User::create(AuthController::userData($request->all()));
 
         fmsgs([
             'title' => 'User Created',

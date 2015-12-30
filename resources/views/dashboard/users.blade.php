@@ -14,7 +14,6 @@
                 Users
             </a>
         </li>
-        <li><a href="#">Reports</a></li>
     </ul>
 
     <hr>
@@ -62,7 +61,12 @@
                             @endif
                         </td>
                         <td>
-                            <button class="btn btn-info">Edit</button>
+                            <a 
+                                href="/dashboard/user/edit/{{ $user->id }}" 
+                                class="btn btn-info"
+                            >
+                                Edit
+                            </a>
                             <form 
                                 style="display: inline-block;" 
                                 action="/dashboard/user/{{ $user->id }}"

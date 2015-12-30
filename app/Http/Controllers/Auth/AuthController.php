@@ -49,12 +49,14 @@ class AuthController extends Controller
         return Validator::make($data, AuthController::validationData());
     }
 
-    public static function validationData(){
-        return [
+    public static function validationData($id = false){
+        $rules = [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users,email'
+                .($id ? ",$id,id" : ''),
             'password' => 'required|confirmed|min:6',
         ];
+        return $rules;
     }
 
     /**
@@ -63,12 +65,16 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    public static function create(array $data)
+    public function create(array $data)
     {
-        return User::create([
+        return User::create(AuthController::userData($data));
+    }
+
+    public static function userData(array $data){
+        return [
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+        ];
     }
 }

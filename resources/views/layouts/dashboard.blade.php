@@ -62,7 +62,6 @@
                                     Users
                                 </a>
                             </li>
-                            <li><a href="#">Reports</a></li>
                         </ul>
 
                     @show

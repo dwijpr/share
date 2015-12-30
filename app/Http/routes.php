@@ -39,4 +39,6 @@ Route::group(['middleware' => ['web']], function(){
     Route::delete('dashboard/user/{user}', 'DashboardController@userDelete');
     Route::get('dashboard/user/new', 'DashboardController@userNew');
     Route::post('dashboard/user/create', 'DashboardController@userCreate');
+    Route::get('dashboard/user/edit/{user}', 'DashboardController@userEdit');
+    Route::patch('dashboard/user/update/{user}', 'DashboardController@userUpdate');
 });
