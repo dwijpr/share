@@ -34,6 +34,13 @@ Route::group(['middleware' => ['web']], function(){
 
     Route::get('home', 'HomeController@index');
 
+    Route::get('profile', 'ProfileController@index');
+    Route::patch('profile/update', 'ProfileController@update');
+    Route::get('profile/numbers', 'ProfileController@numbers');
+    Route::post('profile/number', 'ProfileController@numberCreate');
+    Route::delete('profile/number/{number}', 'ProfileController@numberDelete');
+    Route::patch('profile/number/{number}', 'ProfileController@numberUpdate');
+
     Route::get('dashboard', 'DashboardController@index');
     Route::get('dashboard/users', 'DashboardController@users');
     Route::delete('dashboard/user/{user}', 'DashboardController@userDelete');
