@@ -51,6 +51,7 @@
                             type: '{{ $message['type'] }}',
                             buttons:{
                                 sticker: false,
+                                closer_hover: false,
                             },
                         });
                     @endforeach
