@@ -17,8 +17,8 @@
                     <td>{{ $number->label }}</td>
                     <td>
                         <a 
-                            href="javascript:void(0)" 
-                            class="btn btn-info simpleUpdate"
+                            href="/profile/number/{{ $number->id }}" 
+                            class="btn btn-info"
                             data-simple-update="{{ json_encode($number) }}"
                         >
                             <i class="fa fa-edit"></i>

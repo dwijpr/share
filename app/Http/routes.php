@@ -40,6 +40,7 @@ Route::group(['middleware' => ['web']], function(){
     Route::post('profile/number', 'ProfileController@numberCreate');
     Route::delete('profile/number/{number}', 'ProfileController@numberDelete');
     Route::patch('profile/number/{number}', 'ProfileController@numberUpdate');
+    Route::get('profile/number/{number}', 'ProfileController@numberEdit');
 
     Route::get('dashboard', 'DashboardController@index');
     Route::get('dashboard/users', 'DashboardController@users');

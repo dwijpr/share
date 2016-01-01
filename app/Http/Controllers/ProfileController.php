@@ -78,6 +78,10 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
+    public function numberEdit(Number $number){
+        return view('numbers.edit', ['number' => $number]);
+    }
+
     public function numberUpdate(Request $request, Number $number){
         $this->validate($request, $this->numberValidationRules());
         $number->update($this->numberData($request->all()));

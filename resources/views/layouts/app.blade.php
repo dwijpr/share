@@ -1,71 +1,51 @@
 @extends('layouts.base')
 
+
+@section('additional-styles')
+    
+    <style>
+        body{
+            padding-top: 96px;
+        }
+        div.app-content{
+            padding: 8px 15px;
+        }
+        ol.breadcrumb li{
+            font-size: 16px;
+        }
+    </style>
+
+@endsection
+
+
 @section('content')
 
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
+    <div class="container spark-screen">
+        <div class="row">
+            <div class="col-md-12">
 
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#spark-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                    @section('breadcrumb')
 
-                <a class="navbar-brand" href="/">
-                    {{ config('app.name') }}
-                </a>
+                        <!--
+                        <ol class="breadcrumb">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Library</a></li>
+                            <li class="active">Data</li>
+                        </ol>
+                        -->
+
+                    @show
+
             </div>
 
-            <div class="collapse navbar-collapse" id="spark-navbar-collapse">
+            <div class="col-md-12">
+                <div class="app-content">
 
-                <ul class="nav navbar-nav navbar-right">
+                    @yield('_content')
 
-                    @if (Auth::guest())
-
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Register</a></li>
-
-                    @else
-
-                        @can('dashboard')
-
-                            <li><a href="/dashboard">Dashboard</a></li>
-
-                        @endcan
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="/profile">
-                                        Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Change Password
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/logout">
-                                        <i class="fa fa-btn fa-sign-out"></i>
-                                        Logout
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    @endif
-
-                </ul>
-
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
 
 @endsection

@@ -1,20 +1,22 @@
 @extends('layouts.app')
 
-@section('content')
 
-    @parent
-    
-    <div class="container spark-screen">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Home</div>
+@section('breadcrumb')
 
-                    <div class="panel-body">
-                        You are logged in!
-                    </div>
-                </div>
-            </div>
+@endsection
+
+
+@section('_content')
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <textarea 
+                class="form-control"
+                placeHolder="Share something ... "
+                rows="7"
+                style="font-size: 24px;" 
+                autofocus
+            ></textarea>
         </div>
     </div>
 
