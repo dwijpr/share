@@ -51,7 +51,8 @@
                     @if (Auth::user())
 
                         <ul class="nav navbar-nav navbar-left">
-                                <li><a href="/home">Home</a></li>
+                            <li><a href="/home">Home</a></li>
+                            <li><a href="/files">Files</a></li>
                         </ul>
 
                     @endif

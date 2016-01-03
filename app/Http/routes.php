@@ -34,6 +34,9 @@ Route::group(['middleware' => ['web']], function(){
 
     Route::get('home', 'HomeController@index');
 
+    Route::get('files', 'FilesController@index');
+    Route::post('files', 'FilesController@upload');
+
     Route::get('profile', 'ProfileController@index');
     Route::patch('profile/update', 'ProfileController@update');
     Route::get('profile/numbers', 'ProfileController@numbers');
