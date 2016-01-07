@@ -19,21 +19,19 @@
         {!! Html::style('assets/thirdparty/pnotify/dist/pnotify.buttons.css') !!}
         {!! Html::style('assets/thirdparty/twbs-bootstrap/css/dashboard.css') !!}
 
+        @yield('additional-styles')
+
         <style>
             body {
                 font-family: 'Lato';
             }
+
             .fa-btn {
                 margin-right: 6px;
             }
-            div.footer{
-                padding-top: 32px;
-            }
         </style>
-
-        @yield('styles')
     </head>
-    <body>
+    <body id="app-layout">
 
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
@@ -110,22 +108,14 @@
             </div>
         </nav>
 
-        <div class="container">
-            @yield('content')
-        </div>
-
-        <div class="footer text-center">
-            <p class="lead">
-                <a href="/">
-                    {{ config('app.name') }}&copy;{{ date('Y') }}
-                </a>
-            </p>
-        </div>
+        @yield('content')
 
         {!! Html::script('js/jquery.min.js') !!}
         {!! Html::script('js/bootstrap.min.js') !!}
         {!! Html::script('assets/thirdparty/pnotify/dist/pnotify.js') !!}
         {!! Html::script('assets/thirdparty/pnotify/dist/pnotify.buttons.js') !!}
+
+        @yield('additional-scripts')
 
         @if(fmsgs())
             <script type="text/javascript">
@@ -150,7 +140,5 @@
                 });
             </script>
         @endif
-
-        @yield('scripts')
     </body>
 </html>

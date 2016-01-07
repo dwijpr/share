@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.base.default')
 
-@section('_content')
+@section('title', 'Welcome')
+
+@section('content')
 
     @parent
 

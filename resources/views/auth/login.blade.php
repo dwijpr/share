@@ -1,8 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.base.default')
 
-@section('_content')
-
-    @parent
+@section('content')
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

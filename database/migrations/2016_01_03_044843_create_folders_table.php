@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNumbersTable extends Migration
+class CreateFoldersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateNumbersTable extends Migration
      */
     public function up()
     {
-        Schema::create('numbers', function (Blueprint $table) {
+        Schema::create('folders', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('parent_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
-            $table->string('value');
-            $table->string('label');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateNumbersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('numbers');
+        Schema::drop('folders');
     }
 }

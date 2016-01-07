@@ -1,12 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.base.default')
 
 
-@section('breadcrumb')
-
-@endsection
-
-
-@section('_content')
+@section('content')
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">

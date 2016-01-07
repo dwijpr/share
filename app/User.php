@@ -55,4 +55,8 @@ class User extends Authenticatable
     public function numbers(){
         return $this->hasMany(Number::class);
     }
+
+    public function folders(){
+        return $this->hasMany(Folder::class);
+    }
 }

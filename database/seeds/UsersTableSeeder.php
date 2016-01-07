@@ -15,16 +15,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        User::create([
             'name' => 'Dwi Prabowo',
             'email' => 'dwijpr@gmail.com',
             'password' => bcrypt('asdfasdf'),
         ]);
-        DB::table('roles')->insert([
+        Role::create([
             'name' => 'admin',
             'label' => 'The admin of the system',
         ]);
-        DB::table('permissions')->insert([
+        Permission::create([
             'name' => 'dashboard',
             'label' => 'User has right to access admin dashboard',
         ]);
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
             Role::whereName('admin')->first()
         );
 
-        DB::table('users')->insert([
+        User::create([
             'name' => 'Owl Jpr',
             'email' => 'owljpr@gmail.com',
             'password' => bcrypt('asdfasdf'),
