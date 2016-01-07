@@ -129,10 +129,10 @@
 
         @if(fmsgs())
             <script type="text/javascript">
-                var stack_bottomleft = {
-                    "dir1": "right", "dir2": "up", "push": "top"
-                };
                 $(function(){
+                    var stack_bottomleft = {
+                        "dir1": "right", "dir2": "up", "push": "top"
+                    };
                     PNotify.prototype.options.styling = "fontawesome";
                     @foreach (fmsgs() as $message)
                         new PNotify({

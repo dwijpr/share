@@ -73,7 +73,9 @@ class DashboardController extends Controller
     public function userCreate(Request $request){
         $this->validate($request, AuthController::validationData());
 
-        User::create(AuthController::userData($request->all()));
+        $data = AuthController::userData($request->all());
+        // dd($data);
+        User::create($data);
 
         fmsgs([
             'title' => 'User Created',
