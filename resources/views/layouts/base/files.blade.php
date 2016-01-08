@@ -1,6 +1,27 @@
 @extends('layouts.base')
 
 
+@section('styles')
+
+    <style>
+        .sidebar{
+            top: 95px;
+        }
+        div.page-header{
+            background: #F5F5F5;
+        }
+        div.page-header .breadcrumb li:last-child{
+            padding-right: 16px;
+        }
+        #page-content .breadcrumb{
+            margin-bottom: 4px;
+            background: none;
+        }
+    </style>
+
+@endsection
+
+
 @section('content')
 
     <div class="container-fluid">
@@ -13,8 +34,8 @@
                     @section('navsidebar')
 
                         <ul class="nav nav-sidebar">
-                            <li class="active">
-                                <a href="javascript">
+                            <li>
+                                <a href="javascript:">
                                     Create New Folder
                                 </a>
                             </li>
@@ -28,23 +49,26 @@
                 class="col-xs-6 col-xs-offset-6 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
                 id="page-content"
             >
-
                 <div
                     class="page-header"
                     style="
                         position: fixed;
                         top: 50px;
-                        width: 100%;
+                        left: 0;
+                        right: 0;
                         background: #fff;
                         padding-top: 16px;
-                        z-index: 1;
+                        padding-left: 32px;
+                        z-index: 1001;
+                        white-space: nowrap;
+                        overflow: auto;
                     "
                 >
                     <i 
                         class="fa fa-navicon"
                         style="
                             position: absolute;
-                            left: -16px;
+                            left: 12px;
                             top: 28px;
                             font-size: 16px;
                             cursor: pointer;
@@ -52,7 +76,12 @@
                         id="toggle-sidenav"
                     ></i>
                     <ol class="breadcrumb">
-                        <li>Files</li>
+                        <li class="active">home</li>
+                        <li class="active">dwi</li>
+                        <li class="active">Documents</li>
+                        <li class="active">PDF</li>
+                        <li class="active">kantor</li>
+                        <li class="active">17 Agustus</li>
                     </ol>
                 </div>
                 <div style="padding-top: 64px;">

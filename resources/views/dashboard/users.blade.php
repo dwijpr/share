@@ -3,26 +3,28 @@
 
 @section('navsidebar')
 
-    <ul class="nav nav-sidebar">
-        <li>
-            <a href="/dashboard">
-                Overview
-            </a>
-        </li>
-        <li class="active">
-            <a href="/dashboard/users">
-                Users
-            </a>
-        </li>
-    </ul>
+    @for($i = 0;$i < 1;$i++)
+        <ul class="nav nav-sidebar">
+            <li>
+                <a href="/dashboard">
+                    Overview
+                </a>
+            </li>
+            <li class="active">
+                <a href="/dashboard/users">
+                    Users
+                </a>
+            </li>
+        </ul>
 
-    <hr>
+        <hr>
 
-    <ul class="nav nav-sidebar">
-        <li>
-            <a href="/dashboard/user/new">Create New User</a>
-        </li>
-    </ul>
+        <ul class="nav nav-sidebar">
+            <li>
+                <a href="/dashboard/user/new">Create New User</a>
+            </li>
+        </ul>
+    @endfor
 
 @endsection
 

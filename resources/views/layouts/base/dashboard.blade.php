@@ -1,6 +1,17 @@
 @extends('layouts.base')
 
 
+@section('styles')
+
+    <style>
+        .sidebar{
+            top: 95px;
+        }
+    </style>
+
+@endsection
+
+
 @section('content')
 
     <div class="container-fluid">
@@ -38,17 +49,21 @@
                     style="
                         position: fixed;
                         top: 50px;
-                        width: 100%;
+                        left: 0;
+                        right: 0;
                         background: #fff;
                         padding-top: 16px;
-                        z-index: 1;
+                        padding-left: 32px;
+                        z-index: 1001;
+                        white-space: nowrap;
+                        overflow: auto;
                     "
                 >
                     <i 
                         class="fa fa-navicon"
                         style="
                             position: absolute;
-                            left: -16px;
+                            left: 12px;
                             top: 28px;
                             font-size: 16px;
                             cursor: pointer;
