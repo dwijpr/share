@@ -9,14 +9,22 @@ use ShareApp\Http\Controllers\Controller;
 
 use Storage;
 
+use ShareApp\Folder;
+
 class FilesController extends Controller
 {
+    private $user;
+
     public function __construct(){
         $this->middleware('auth');
+        $this->user = auth()->user();
     }
 
-    public function index(){
-        return view('files');
+    public function index($filesUri = false){
+        if(!$filesUri){
+            $dir = Folder::root($this->user);
+        }
+        return view('files', ['dir' => $dir]);
     }
 
     public function upload(Request $request){

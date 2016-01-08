@@ -5,6 +5,7 @@
 
     @parent
 
+    @if(!(count($dir->folders()) && count($dir->files())))
     <table class="table table-hover table-stripped">
         <thead>
             <tr>
@@ -12,22 +13,22 @@
             </tr>
         </thead>
         <tbody>
-            @for($i = 0;$i < 15;$i++)
+            @foreach($dir->folders() as $folder)
                 <tr>
-                    <td>home</td>
+                    <td>{{ $folder->name }}</td>
                 </tr>
+            @endforeach
+            @foreach($dir->files() as $file)
                 <tr>
-                    <td>file</td>
+                    <td>{{ $file->name }}</td>
                 </tr>
-            @endfor
+            @endforeach
         </tbody>
     </table>
-    <!--
-    <form method="post" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        <input type="file" name="file">
-        <input type="submit">
-    </form>
-    -->
+    @else
+        <h1 class="text-center">
+            This folder is Empty
+        </h1>
+    @endif
     
 @endsection

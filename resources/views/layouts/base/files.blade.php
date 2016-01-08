@@ -39,6 +39,11 @@
                                     Create New Folder
                                 </a>
                             </li>
+                            <li>
+                                <a href="javascript:">
+                                    Add File
+                                </a>
+                            </li>
                         </ul>
 
                     @show
@@ -76,12 +81,7 @@
                         id="toggle-sidenav"
                     ></i>
                     <ol class="breadcrumb">
-                        <li class="active">home</li>
-                        <li class="active">dwi</li>
-                        <li class="active">Documents</li>
-                        <li class="active">PDF</li>
-                        <li class="active">kantor</li>
-                        <li class="active">17 Agustus</li>
+                        <li class="active">/</li>
                     </ol>
                 </div>
                 <div style="padding-top: 64px;">
