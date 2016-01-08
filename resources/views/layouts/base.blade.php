@@ -22,12 +22,24 @@
         <style>
             body {
                 font-family: 'Lato';
+                padding-bottom: 48px;
+            }
+            .sidebar{
+                padding-bottom: 54px;
             }
             .fa-btn {
                 margin-right: 6px;
             }
             div.footer{
-                padding-top: 32px;
+                position: fixed;
+                width: 100%;
+                left: 0;
+                background: white;
+                bottom: 0;
+                z-index: 1001;
+            }
+            div.footer hr{
+                margin-top: 0;
             }
         </style>
 
@@ -112,14 +124,19 @@
 
         <div class="container">
             @yield('content')
-        </div>
 
-        <div class="footer text-center">
-            <p class="lead">
-                <a href="/">
-                    {{ config('app.name') }}&copy;{{ date('Y') }}
-                </a>
-            </p>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="footer text-center">
+                        <hr>
+                        <p class="lead">
+                            <a href="/">
+                                {{ config('app.name') }}&copy;{{ date('Y') }}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         {!! Html::script('js/jquery.min.js') !!}

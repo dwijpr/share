@@ -1,15 +1,4 @@
-@extends('layouts.app-breadcrumb')
-
-
-@section('breadcrumb')
-
-    @parent
-
-    <ol class="breadcrumb">
-        <li class="active">/</li>
-    </ol>
-
-@endsection
+@extends('layouts.base.files')
 
 
 @section('_content')
@@ -17,14 +6,21 @@
     @parent
 
     <table class="table table-hover table-stripped">
-        @for($i = 0;$i < 15;$i++)
+        <thead>
             <tr>
-                <td>home</td>
+                <th>Name</th>
             </tr>
-            <tr>
-                <td>file</td>
-            </tr>
-        @endfor
+        </thead>
+        <tbody>
+            @for($i = 0;$i < 15;$i++)
+                <tr>
+                    <td>home</td>
+                </tr>
+                <tr>
+                    <td>file</td>
+                </tr>
+            @endfor
+        </tbody>
     </table>
     <!--
     <form method="post" enctype="multipart/form-data">
