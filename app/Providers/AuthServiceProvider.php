@@ -8,6 +8,9 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use ShareApp\Permission;
 use Illuminate\Support\Facades\Schema;
 
+use ShareApp\Folder;
+use ShareApp\Policies\FolderPolicy;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -16,7 +19,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'ShareApp\Model' => 'ShareApp\Policies\ModelPolicy',
+        Folder::class => FolderPolicy::class,
     ];
 
     /**

@@ -5,13 +5,13 @@ namespace ShareApp\Policies;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 use ShareApp\User;
-use ShareApp\Task;
+use ShareApp\Folder;
 
-class TaskPolicy
+class FolderPolicy
 {
     use HandlesAuthorization;
 
-    public function destroy(User $user, Task $task){
-        return $user->id === $task->user_id;
+    public function all(User $user, Folder $folder){
+        return $user->id === $folder->user_id;
     }
 }

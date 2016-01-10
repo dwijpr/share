@@ -25,12 +25,16 @@ class FilesController extends Controller
         if(!$folder){
             $folder = Folder::root($this->user);
         }else{
-            $folder = Folder::find($folder);
+            $folder = Folder::findOrFail($folder);
         }
+
+        $this->authorize('all', $folder);
+
         return view('files', ['folder' => $folder]);
     }
 
     public function newFolder(Folder $folder){
+        $this->authorize('all', $folder);
         return view('files.new-folder', ['folder' => $folder]);
     }
 
@@ -41,6 +45,7 @@ class FilesController extends Controller
     }
 
     public function createFolder(Request $request, Folder $folder){
+        $this->authorize('all', $folder);
         $this->validate($request, $this->folderValidationRules());
 
         Folder::create([
@@ -58,8 +63,8 @@ class FilesController extends Controller
     }
 
     public function folderDelete(Folder $folder){
+        $this->authorize('all', $folder);
         $folder->delete();
-
         fmsgs([
             'title' => 'Folder Deleted',
             'type' => 'success',
@@ -69,10 +74,12 @@ class FilesController extends Controller
     }
 
     public function upload(Folder $folder){
+        $this->authorize('all', $folder);
         return view('files.upload', ['folder' => $folder]);
     }
 
     public function uploadPost(Request $request, Folder $folder){
+        $this->authorize('all', $folder);
         $file = $request->file('file');
         if(!$file){
             fmsgs([
