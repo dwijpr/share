@@ -81,7 +81,11 @@
                         id="toggle-sidenav"
                     ></i>
                     <ol class="breadcrumb">
-                        <li class="active">/</li>
+                        @if(!$folder->parent_id)
+                            <li class="active">/</li>
+                        @else
+                            {!! $folder->uri() !!}
+                        @endif
                     </ol>
                 </div>
                 <div style="padding-top: 64px;">

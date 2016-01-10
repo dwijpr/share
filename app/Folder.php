@@ -31,4 +31,29 @@ class Folder extends Model
     public function folders(){
         return $this->hasMany(Folder::class, 'parent_id');
     }
+
+    public function uri(){
+        $folder = $this;
+        $folders = [$folder];
+        while($folder->parent_id){
+            $folder = Folder::find($folder->parent_id);
+            array_push($folders, $folder);
+        }
+
+        $folders = array_reverse($folders);
+        $view = "";
+        $tpl = "<li><a href='%s'>%s</a></li>";
+        $tplActive = "<li class='active'>%s</li>";
+        foreach ($folders as $index => $folder) {
+            if($folder->name === "/"){
+                $folder->name = 'Files';
+            }
+            if(count($folders) === $index+1){
+                $view .= sprintf($tplActive, $folder->name);
+            }else{
+                $view .= sprintf($tpl, "/files/".$folder->id, $folder->name);
+            }
+        }
+        return $view;
+    }
 }
