@@ -40,8 +40,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:">
-                                    Add File
+                                <a href="/files/upload/{{ $folder->id }}">
+                                    Upload File
                                 </a>
                             </li>
                         </ul>

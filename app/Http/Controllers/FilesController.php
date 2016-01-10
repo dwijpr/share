@@ -10,6 +10,7 @@ use ShareApp\Http\Controllers\Controller;
 use Storage;
 
 use ShareApp\Folder;
+use ShareApp\File;
 
 class FilesController extends Controller
 {
@@ -20,14 +21,18 @@ class FilesController extends Controller
         $this->user = auth()->user();
     }
 
-    public function index($filesUri = false){
-        if(!$filesUri){
-            $dir = Folder::root($this->user);
+    public function index($folder = false){
+        if(!$folder){
+            $folder = Folder::root($this->user);
         }
-        return view('files', ['dir' => $dir]);
+        return view('files', ['folder' => $folder]);
     }
 
-    public function upload(Request $request){
+    public function upload(Folder $folder){
+        return view('files.upload', ['folder' => $folder]);
+    }
+
+    public function uploadPost(Request $request, Folder $folder){
         $file = $request->file('file');
         if(!$file){
             fmsgs([
@@ -39,10 +44,19 @@ class FilesController extends Controller
         }
 
         $extension = $file->getClientOriginalExtension();
+        $filename = $file->getFilename() . '.' . $extension;
+        $name = $file->getClientOriginalName();
+
         $storage = Storage::disk('local')->put(
-            $file->getFilename() . '.' . $extension
+            $filename
             , file_get_contents($file->getRealPath())
         );
+
+        File::create([
+            'name' => $name,
+            'filename' => $filename,
+            'folder_id' => $folder->id,
+        ]);
 
         fmsgs([
             'title' => 'File Uploaded',
