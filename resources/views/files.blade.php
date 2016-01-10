@@ -5,7 +5,7 @@
 
     @parent
 
-    @if(!(count($folder->folders) && count($folder->files)))
+    @if(count($folder->folders) or count($folder->files))
     <table class="table table-hover table-stripped">
         <thead>
             <tr>
@@ -13,9 +13,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($folder->folders as $folder)
+            @foreach($folder->folders as $_folder)
                 <tr>
-                    <td>{{ $folder->name }}</td>
+                    <td>{{ $_folder->name }}</td>
                 </tr>
             @endforeach
             @foreach($folder->files as $file)

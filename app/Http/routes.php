@@ -37,6 +37,8 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('files', 'FilesController@index');
     Route::get('files/upload/{folder}', 'FilesController@upload');
     Route::post('files/upload/{folder}', 'FilesController@uploadPost');
+    Route::get('files/folder/new/{folder}', 'FilesController@newFolder');
+    Route::post('files/folder/new/{folder}', 'FilesController@createFolder');
 
     Route::get('profile', 'ProfileController@index');
     Route::patch('profile/update', 'ProfileController@update');

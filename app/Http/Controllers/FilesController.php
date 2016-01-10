@@ -28,6 +28,33 @@ class FilesController extends Controller
         return view('files', ['folder' => $folder]);
     }
 
+    public function newFolder(Folder $folder){
+        return view('files.new-folder', ['folder' => $folder]);
+    }
+
+    private function folderValidationRules(){
+        return [
+            'name' => 'required',
+        ];
+    }
+
+    public function createFolder(Request $request, Folder $folder){
+        $this->validate($request, $this->folderValidationRules());
+
+        Folder::create([
+            'parent_id' => $folder->id,
+            'user_id' => $folder->user->id,
+            'name' => $request->name,
+        ]);
+
+        fmsgs([
+            'title' => 'New Folder',
+            'type' => 'success',
+            'text' => 'The folder created successfully',
+        ]);
+        return redirect()->back();
+    }
+
     public function upload(Folder $folder){
         return view('files.upload', ['folder' => $folder]);
     }

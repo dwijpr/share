@@ -35,7 +35,7 @@
 
                         <ul class="nav nav-sidebar">
                             <li>
-                                <a href="javascript:">
+                                <a href="/files/folder/new/{{ $folder->id }}">
                                     Create New Folder
                                 </a>
                             </li>

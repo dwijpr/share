@@ -4,7 +4,7 @@
 
     <ul class="nav nav-sidebar">
         <li>
-            <a href="javascript:">
+            <a href="/files/folder/new/{{ $folder->id }}">
                 Create New Folder
             </a>
         </li>
@@ -23,8 +23,12 @@
 
     <form method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <input type="file" name="file">
-        <input type="submit">
+        <div class="form-group">
+            <input class="form-control" type="file" name="file">
+        </div>
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit">
+        </div>
     </form>
 
 @endsection
