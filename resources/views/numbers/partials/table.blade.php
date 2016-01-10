@@ -19,7 +19,6 @@
                         <a 
                             href="/profile/number/{{ $number->id }}" 
                             class="btn btn-info"
-                            data-simple-update="{{ json_encode($number) }}"
                         >
                             <i class="fa fa-edit"></i>
                         </a>

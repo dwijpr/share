@@ -24,6 +24,8 @@ class FilesController extends Controller
     public function index($folder = false){
         if(!$folder){
             $folder = Folder::root($this->user);
+        }else{
+            $folder = Folder::find($folder);
         }
         return view('files', ['folder' => $folder]);
     }
@@ -52,7 +54,18 @@ class FilesController extends Controller
             'type' => 'success',
             'text' => 'The folder created successfully',
         ]);
-        return redirect()->back();
+        return redirect('/files/'.$folder->id);
+    }
+
+    public function folderDelete(Folder $folder){
+        $folder->delete();
+
+        fmsgs([
+            'title' => 'Folder Deleted',
+            'type' => 'success',
+            'text' => 'The '.$folder->name.' folder successfully deleted!',
+        ]);
+        return redirect('/files/'.$folder->parent_id);
     }
 
     public function upload(Folder $folder){
@@ -90,6 +103,6 @@ class FilesController extends Controller
             'type' => 'success',
             'text' => 'The file uploaded successfully',
         ]);
-        return redirect()->back();
+        return redirect('/files/'.$folder->id);
     }
 }
