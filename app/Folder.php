@@ -32,7 +32,7 @@ class Folder extends Model
         return $this->hasMany(Folder::class, 'parent_id');
     }
 
-    public function uri(){
+    public function uri($linkSelf = false){
         $folder = $this;
         $folders = [$folder];
         while($folder->parent_id){
@@ -48,7 +48,7 @@ class Folder extends Model
             if($folder->name === "/"){
                 $folder->name = 'Files';
             }
-            if(count($folders) === $index+1){
+            if(count($folders) === $index+1 && !$linkSelf){
                 $view .= sprintf($tplActive, $folder->name);
             }else{
                 $view .= sprintf($tpl, "/files/".$folder->id, $folder->name);

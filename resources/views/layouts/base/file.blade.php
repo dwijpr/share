@@ -50,7 +50,7 @@
                 class="col-xs-6 col-xs-offset-6 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
                 id="page-content"
             >
-                <h1
+                <div
                     class="page-header"
                     style="
                         position: fixed;
@@ -76,8 +76,13 @@
                         "
                         id="toggle-sidenav"
                     ></i>
-                    {{ $file->name }}
-                </h1>
+                    <ol class="breadcrumb">
+                        {!! $file->folder->uri(true) !!}
+                        <li class="active">
+                            {{ $file->name }}
+                        </li>
+                    </ol>
+                </div>
                 <div style="padding-top: 64px;">
 
                     @yield('_content')
