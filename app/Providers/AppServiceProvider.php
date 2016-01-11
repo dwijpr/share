@@ -27,8 +27,12 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Folder::deleting(function(Folder $folder){
-            $folder->folders()->delete();
-            $folder->files()->delete();
+            foreach($folder->folders as $_folder){
+                $_folder->_delete();
+            }
+            foreach($folder->files as $file){
+                $file->delete();
+            }
         });
 
         File::deleting(function(File $file){
