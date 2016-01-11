@@ -52,7 +52,10 @@
                 </tr>
             @endforeach
             @foreach($folder->files as $file)
-                <tr>
+                <tr
+                    onclick="window.location = '/file/view/{{ $file->id }}'"
+                    style="cursor: pointer;"
+                >
                     <td>
                         <i class="fa fa-file"></i>
                         {{ $file->name }}

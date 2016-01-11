@@ -8,9 +8,11 @@ use ShareApp\Http\Requests;
 use ShareApp\Http\Controllers\Controller;
 
 use Storage;
+use File;
+use Response;
 
 use ShareApp\Folder;
-use ShareApp\File;
+use ShareApp\File as FileModel;
 
 class FilesController extends Controller
 {
@@ -99,7 +101,7 @@ class FilesController extends Controller
             , file_get_contents($file->getRealPath())
         );
 
-        File::create([
+        FileModel::create([
             'name' => $name,
             'filename' => $filename,
             'folder_id' => $folder->id,
@@ -111,5 +113,22 @@ class FilesController extends Controller
             'text' => 'The file uploaded successfully',
         ]);
         return redirect('/files/'.$folder->id);
+    }
+
+    public function fileView(FileModel $file){
+        $file->src = url('file/'.$file->id);
+        return view('files.file', ['file' => $file]);
+    }
+
+    public function file(FileModel $file){
+        $path = storage_path('app') . '/' . $file->filename;
+
+        $_file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = Response::make($_file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
     }
 }
