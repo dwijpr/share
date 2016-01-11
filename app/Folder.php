@@ -58,7 +58,6 @@ class Folder extends Model
     }
 
     public function _delete(){
-        app('log')->debug('Folder-id: '.$this->id);
         if(count($this->folders)){
             foreach($this->folders as $folder){
                 $folder->_delete();

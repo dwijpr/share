@@ -84,15 +84,21 @@
             This folder is Empty
         </h1>
         <div class="text-center">
-            <a 
-                href="/files/{{ $folder->parent_id }}" 
-                class="btn btn-default"
-            >
-                <i class="fa fa-sign-out"></i>
-                ..
-            </a>
+
+            @if($folder->parent_id)
+            
+                <a 
+                    href="/files/{{ $folder->parent_id }}" 
+                    class="btn btn-default visible-xs-block"
+                >
+                    <i class="fa fa-sign-out"></i>
+                    ..
+                </a>
+
+            @endif
+
             <a
-                class="btn btn-primary"
+                class="btn btn-primary visible-xs-block"
                 href="/files/folder/new/{{ $folder->id }}" 
             >
                 <i class="fa fa-folder"></i>
@@ -100,7 +106,7 @@
             </a>
             <a
                 href="/files/upload/{{ $folder->id }}"
-                class="btn btn-info"
+                class="btn btn-info visible-xs-block"
             >
                 <i class="fa fa-upload"></i>
                 Upload File
