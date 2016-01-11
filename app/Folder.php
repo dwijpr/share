@@ -10,15 +10,6 @@ class Folder extends Model
         'parent_id', 'user_id', 'name',
     ];
 
-    protected static function boot(){
-        parent::boot();
-
-        static::deleting(function(Folder $folder){
-            $folder->folders()->delete();
-            $folder->files()->delete();
-        });
-    }
-
     public function user(){
         return $this->belongsTo(User::class);
     }
