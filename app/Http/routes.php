@@ -44,6 +44,7 @@ Route::group(['middleware' => ['web']], function(){
     Route::delete('files/folder/delete/{folder}', 'FilesController@folderDelete');
     Route::get('file/view/{file}', 'FilesController@fileView');
     Route::get('file/{file}', 'FilesController@file');
+    Route::delete('file/{file}', 'FilesController@fileDelete');
 
     Route::get('profile', 'ProfileController@index');
     Route::patch('profile/update', 'ProfileController@update');

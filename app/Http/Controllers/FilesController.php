@@ -116,19 +116,29 @@ class FilesController extends Controller
     }
 
     public function fileView(FileModel $file){
+        $this->authorize('all', $file);
         $file->src = url('file/'.$file->id);
         return view('files.file', ['file' => $file]);
     }
 
     public function file(FileModel $file){
+        $this->authorize('all', $file);
         $path = storage_path('app') . '/' . $file->filename;
-
         $_file = File::get($path);
         $type = File::mimeType($path);
-
         $response = Response::make($_file, 200);
         $response->header("Content-Type", $type);
-
         return $response;
+    }
+
+    public function fileDelete(FileModel $file){
+        $this->authorize('all', $file);
+        $file->delete();
+        fmsgs([
+            'title' => 'File Deleted',
+            'type' => 'success',
+            'text' => 'The '.$file->name.' file successfully deleted!',
+        ]);
+        return redirect('/files/'.$file->folder->id);
     }
 }

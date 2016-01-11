@@ -62,7 +62,7 @@
                     </td>
                     <td>
                         {!! Form::open([
-                            'url' => '#',
+                            'url' => '/file/'.$file->id,
                             'class' => 'form-horizontal',
                             'method' => 'delete',
                             'style' => 'display: inline-block;'
