@@ -24,6 +24,21 @@
 @section('navsidebar')
 
     <ul class="nav nav-sidebar">
+        <li>
+            <a href="/files/{{ $file->folder->id }}">
+                Back
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                Download
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                Set As Profile Picture
+            </a>
+        </li>
     </ul>
 
 @endsection
@@ -33,18 +48,18 @@
     @parent
 
     <p class="text-center">
-        <button class="btn btn-default">
+        <a href="/files/{{ $file->folder->id }}" class="btn btn-default">
             <i class="fa fa-sign-out"></i>
             <span class="hidden-sm hidden-xs">Back</span>
-        </button>
-        <button class="btn btn-primary">
+        </a>
+        <a href="/download/{{ $file->id }}" class="btn btn-primary">
             <i class="fa fa-download"></i>
             <span class="hidden-sm hidden-xs">Download</span>
-        </button>
-        <button class="btn btn-info">
+        </a>
+        <a href="javascript:" class="btn btn-info">
             <i class="fa fa-picture-o"></i>
             <span class="hidden-sm hidden-xs">Set As Profile Picture</span>
-        </button>
+        </a>
     </p>
 
     <img 
