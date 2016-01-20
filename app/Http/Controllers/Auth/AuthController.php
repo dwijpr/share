@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
+use DB;
+
 class AuthController extends Controller
 {
     /*
@@ -68,7 +70,8 @@ class AuthController extends Controller
      */
     public function create(array $data)
     {
-        return User::create(AuthController::userData($data));
+        $user = User::create(AuthController::userData($data));
+        return $user;
     }
 
     public static function userData(array $data){

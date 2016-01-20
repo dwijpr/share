@@ -38,6 +38,40 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Gender</label>
+
+                            <div class="col-md-6">
+                                <div class="radio" style="display: inline-block;">
+                                    <label>
+                                        {!! Form::radio(
+                                            'gender'
+                                            , 1 
+                                            , old('gender')==1?true:false
+                                        ) !!}
+                                        Male
+                                    </label>
+                                </div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="radio" style="display: inline-block;">
+                                    <label>
+                                        {!! Form::radio(
+                                            'gender'
+                                            , 0 
+                                            , old('gender')==0?true:false
+                                        ) !!}
+                                        Female
+                                    </label>
+                                </div>
+
+                                @if ($errors->has('gender'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Password</label>
 
