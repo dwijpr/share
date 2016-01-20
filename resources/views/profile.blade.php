@@ -53,6 +53,39 @@
                             @endif
                         </div>
                     </div>
+                    <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Gender</label>
+
+                        <div class="col-md-6">
+                            <div class="radio" style="display: inline-block;">
+                                <label>
+                                    {!! Form::radio(
+                                        'gender'
+                                        , 1 
+                                        , $user->gender===1
+                                    ) !!}
+                                    Male
+                                </label>
+                            </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="radio" style="display: inline-block;">
+                                <label>
+                                    {!! Form::radio(
+                                        'gender'
+                                        , 0 
+                                        , $user->gender===0
+                                    ) !!}
+                                    Female
+                                </label>
+                            </div>
+
+                            @if ($errors->has('gender'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('gender') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-sm-8 col-sm-offset-4">
                             @if(count($user->numbers))

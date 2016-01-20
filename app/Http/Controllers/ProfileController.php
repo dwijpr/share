@@ -8,6 +8,7 @@ use ShareApp\Http\Requests;
 use ShareApp\Http\Controllers\Controller;
 use ShareApp\Http\Controllers\Auth\AuthController;
 
+use ShareApp\User;
 use ShareApp\Number;
 
 class ProfileController extends Controller
@@ -35,7 +36,7 @@ class ProfileController extends Controller
         $data = AuthController::userData($dataRequest);
         unset($data['password']);
 
-        $this->user->update($data);
+        User::where('id', $this->user->id)->update($data);
 
         fmsgs([
             'title' => 'Profile Updated',

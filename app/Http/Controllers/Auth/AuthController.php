@@ -55,6 +55,7 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|unique:users,email'
                 .($id ? ",$id,id" : ''),
             'password' => 'required|confirmed|min:6',
+            'gender' => 'required',
         ];
         return $rules;
     }
@@ -75,6 +76,7 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'gender' => $data['gender'],
         ];
     }
 }
