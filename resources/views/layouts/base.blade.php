@@ -41,6 +41,12 @@
             div.footer hr{
                 margin-top: 0;
             }
+
+            .nav > li > a > img.img-profile-picture{
+                max-height: 18px;
+                border-radius: 2px;
+                margin-right: 4px;
+            }
         </style>
 
         @yield('styles')
@@ -87,8 +93,23 @@
                             @endcan
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                <a
+                                    href="#"
+                                    class="dropdown-toggle"
+                                    data-toggle="dropdown"
+                                    role="button"
+                                    aria-expanded="false"
+                                >
+                                    {!! Html::image(
+                                        'img/default-'.($user->gender?'male':'female').'.png'
+                                        , $user->name.' pic'
+                                        , [
+                                            'class' => 
+                                            'img-profile-picture'
+                                        ]
+                                    ) !!}
+                                    {{ Auth::user()->name }}
+                                    <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">

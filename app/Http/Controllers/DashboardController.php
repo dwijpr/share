@@ -15,6 +15,7 @@ use Gate;
 class DashboardController extends Controller
 {
     public function __construct(){
+        parent::__construct();
         if(auth()->check()){
             $this->authorize('dashboard');
         }else{

@@ -23,7 +23,8 @@
 
                 <div class="col-sm-4">
                     {!! Html::image(
-                        'img/default-female.png', auth()->user()->name.' pic'
+                        'img/default-'.($user->gender?'male':'female').'.png'
+                        , $user->name.' pic'
                         , ['class' => 'well img-responsive']
                     ) !!}
                 </div>

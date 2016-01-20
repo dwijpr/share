@@ -16,6 +16,7 @@ class ProfileController extends Controller
     protected $user;
 
     public function __construct(){
+        parent::__construct();
         $this->middleware('auth');
         $this->user = auth()->user();
     }
