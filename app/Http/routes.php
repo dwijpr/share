@@ -53,6 +53,9 @@ Route::group(['middleware' => ['web']], function(){
         'change_profile_picture/{file}', 'FilesController@setAsProfilePicture'
     );
 
+    Route::get('change_password', 'ProfileController@passwordChange');
+    Route::post('change_password', 'ProfileController@passwordUpdate');
+
     Route::get('profile', 'ProfileController@index');
     Route::patch('profile/update', 'ProfileController@update');
     Route::get('profile/numbers', 'ProfileController@numbers');

@@ -120,7 +120,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="/change_password">
                                             Change Password
                                         </a>
                                     </li>

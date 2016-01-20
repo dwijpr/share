@@ -11,6 +11,9 @@ use ShareApp\Http\Controllers\Auth\AuthController;
 use ShareApp\User;
 use ShareApp\Number;
 
+use Validator;
+use Hash;
+
 class ProfileController extends Controller
 {
     protected $user;
@@ -78,6 +81,49 @@ class ProfileController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function passwordChange(){
+        return view('auth.passwords.change');
+    }
+
+    public function passwordUpdate(Request $request){
+        $validationRules = AuthController::validationData($this->user->id);
+        unset($validationRules['name']);
+        unset($validationRules['email']);
+        unset($validationRules['gender']);
+        $validator = Validator::make($request->all(), $validationRules);
+
+        $validator->after(function($validator) use ($request){
+            if(!Hash::check( $request->current, $this->user->password )){
+                $validator->errors()->add(
+                    'current', 'Your current password is incorrect'
+                );
+            }
+        });
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $dataRequest = $request->all();
+        $dataRequest['name'] = '';
+        $dataRequest['email'] = '';
+        $dataRequest['gender'] = '';
+        $data = AuthController::userData($dataRequest);
+        unset($data['name']);
+        unset($data['email']);
+        unset($data['gender']);
+
+        User::where('id', $this->user->id)->update($data);
+
+        fmsgs([
+            'title' => 'Password Updated',
+            'type'  => 'success',
+            'text'  => "Successfully updating your password",
+        ]);
+
+        return redirect('profile');
     }
 
     public function numberEdit(Number $number){
