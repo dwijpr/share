@@ -119,7 +119,9 @@ class FilesController extends Controller
     public function fileView(FileModel $file){
         $this->authorize('all', $file);
         $_file = fileInfo($file);
-        $file->type = explode('/', $_file['type'])[0];
+        $types = explode('/', $_file['type']);
+        $file->type = $types[0];
+        $file->typeDetail = $types[1];
         $file->src = url('file/'.$file->id);
         return view('files.file', ['file' => $file]);
     }

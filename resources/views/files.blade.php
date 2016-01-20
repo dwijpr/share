@@ -42,8 +42,7 @@
                             'style' => 'display: inline-block;'
                         ]) !!}
                             <button 
-                                class="btn btn-danger"
-                                onclick="return confirm('are you sure?')"
+                                class="btn btn-danger delete"
                             >
                                 <i class="fa fa-close"></i>
                             </button>
@@ -68,8 +67,7 @@
                             'style' => 'display: inline-block;'
                         ]) !!}
                             <button 
-                                class="btn btn-danger"
-                                onclick="return confirm('are you sure?')"
+                                class="btn btn-danger delete"
                             >
                                 <i class="fa fa-close"></i>
                             </button>
@@ -114,4 +112,16 @@
         </div>
     @endif
     
+@endsection
+
+
+@section('scripts')
+
+    <script>
+        $(".delete").click(function(e){
+            e.stopPropagation();
+            return confirm("Are you sure?");
+        });
+    </script>
+
 @endsection

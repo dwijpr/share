@@ -12,6 +12,7 @@
             max-height: 256px;
             margin: 0 auto;
             border: 1px solid rgba(0, 0, 0, .4);
+            border-radius: 5px;
         }
         @media (min-width: 768px){
             .file-view{
@@ -81,7 +82,10 @@
         >
     @else
         <h1 class="text-danger text-center">
-            No Preview Available.
+            No Preview Available for 
+            <i class="text-info">{{ $file->typeDetail }}</i>
+            &nbsp;
+            files.
         </h1>
     @endif
 
