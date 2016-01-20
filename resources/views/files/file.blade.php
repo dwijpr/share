@@ -6,13 +6,15 @@
     @parent
 
     <style>
-        .img-responsive.vertically{
-            border: 1px solid rgba(0, 0, 0, .4);
+        .file-view{
+            display: block;
+            max-width: 100%;
             max-height: 256px;
             margin: 0 auto;
+            border: 1px solid rgba(0, 0, 0, .4);
         }
         @media (min-width: 768px){
-            .img-responsive.vertically{
+            .file-view{
                 max-height: 384px;
             }
         }
@@ -34,11 +36,13 @@
                 Download
             </a>
         </li>
-        <li>
-            <a href="/change_profile_picture/{{ $file->id }}">
-                Set As Profile Picture
-            </a>
-        </li>
+        @if($file->type === 'image')
+            <li>
+                <a href="/change_profile_picture/{{ $file->id }}">
+                    Set As Profile Picture
+                </a>
+            </li>
+        @endif
     </ul>
 
 @endsection
@@ -56,16 +60,29 @@
             <i class="fa fa-download"></i>
             <span class="hidden-sm hidden-xs">Download</span>
         </a>
-        <a href="/change_profile_picture/{{ $file->id }}" class="btn btn-info">
-            <i class="fa fa-picture-o"></i>
-            <span class="hidden-sm hidden-xs">Set As Profile Picture</span>
-        </a>
+        @if($file->type === 'image')
+            <a href="/change_profile_picture/{{ $file->id }}" class="btn btn-info">
+                <i class="fa fa-picture-o"></i>
+                <span class="hidden-sm hidden-xs">Set As Profile Picture</span>
+            </a>
+        @endif
     </p>
 
-    <img 
-        id="image-view" 
-        class="img-responsive vertically" 
-        src="{{ $file->src }}"
-    >
+    @if($file->type === 'video')
+        <video class="file-view" controls>
+            <source src="{{ $file->src }}">
+            Your browser does not support the video tag.
+        </video>
+    @elseif($file->type === 'image')
+        <img 
+            id="image-view" 
+            class="file-view" 
+            src="{{ $file->src }}"
+        >
+    @else
+        <h1 class="text-danger text-center">
+            No Preview Available.
+        </h1>
+    @endif
 
 @endsection
