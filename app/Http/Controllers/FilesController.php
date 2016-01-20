@@ -122,27 +122,29 @@ class FilesController extends Controller
         return view('files.file', ['file' => $file]);
     }
 
-    private function fileInfo(FileModel $file){
-        $path = storage_path('app') . '/' . $file->filename;
-        $_file = File::get($path);
-        $type = File::mimeType($path);
-        return [
-            'file' => $_file,
-            'type' => $type,
-            'path' => $path,
-        ];
-    }
-
     public function file(FileModel $file){
         $this->authorize('all', $file);
-        $_file = $this->fileInfo($file);
+        $_file = fileInfo($file);
         $response = Response::make($_file['file'], 200);
         $response->header("Content-Type", $_file['type']);
         return $response;
     }
 
+    public function setAsProfilePicture(FileModel $file){
+        $this->authorize('all', $file);
+        $this->user->profile_picture_id = $file->id;
+        $this->user->save();
+        fmsgs([
+            'title' => 'Profile Picture Updated',
+            'type' => 'success',
+            'text' => 'The '.$file->name.' set as Your Profile Picture',
+        ]);
+        return redirect()->back();
+    }
+
     public function download(FileModel $file){
-        $_file = $this->fileInfo($file);
+        $this->authorize('all', $file);
+        $_file = fileInfo($file);
         return Response::download($_file['path'], $file->name);
     }
 

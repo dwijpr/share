@@ -35,7 +35,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="/change_profile_picture/{{ $file->id }}">
                 Set As Profile Picture
             </a>
         </li>
@@ -56,7 +56,7 @@
             <i class="fa fa-download"></i>
             <span class="hidden-sm hidden-xs">Download</span>
         </a>
-        <a href="javascript:" class="btn btn-info">
+        <a href="/change_profile_picture/{{ $file->id }}" class="btn btn-info">
             <i class="fa fa-picture-o"></i>
             <span class="hidden-sm hidden-xs">Set As Profile Picture</span>
         </a>

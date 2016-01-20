@@ -41,12 +41,17 @@ Route::group(['middleware' => ['web']], function(){
     Route::post('files/upload/{folder}', 'FilesController@uploadPost');
     Route::get('files/folder/new/{folder}', 'FilesController@newFolder');
     Route::post('files/folder/new/{folder}', 'FilesController@createFolder');
-    Route::delete('files/folder/delete/{folder}', 'FilesController@folderDelete');
+    Route::delete(
+        'files/folder/delete/{folder}', 'FilesController@folderDelete'
+    );
     Route::get('file/view/{file}', 'FilesController@fileView');
     Route::get('file/{file}', 'FilesController@file');
     Route::delete('file/{file}', 'FilesController@fileDelete');
 
     Route::get('download/{file}', 'FilesController@download');
+    Route::get(
+        'change_profile_picture/{file}', 'FilesController@setAsProfilePicture'
+    );
 
     Route::get('profile', 'ProfileController@index');
     Route::patch('profile/update', 'ProfileController@update');
@@ -62,5 +67,7 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('dashboard/user/new', 'DashboardController@userNew');
     Route::post('dashboard/user/create', 'DashboardController@userCreate');
     Route::get('dashboard/user/edit/{user}', 'DashboardController@userEdit');
-    Route::patch('dashboard/user/update/{user}', 'DashboardController@userUpdate');
+    Route::patch(
+        'dashboard/user/update/{user}', 'DashboardController@userUpdate'
+    );
 });

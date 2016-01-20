@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Session;
 
+use ShareApp\File as FileModel;
+use ShareApp\User;
+
+use File;
+
 if(!function_exists('fmsgs')){
     function fmsgs($message = false){
         $msgs = Session::get('fmsgs');
@@ -20,5 +25,30 @@ if(!function_exists('fmsgs')){
         Session::flash(
             'fmsgs', $msgs
         );
+    }
+}
+
+if(!function_exists('fileInfo')){
+    function fileInfo(FileModel $file){
+        $path = storage_path('app') . '/' . $file->filename;
+        $_file = File::get($path);
+        $type = File::mimeType($path);
+        return [
+            'file' => $_file,
+            'type' => $type,
+            'path' => $path,
+        ];
+    }
+}
+
+if(!function_exists('ppSrc')){
+    function ppSrc(User $user){
+        $path = 'img/default-'.($user->gender?'male':'female').'.png';
+        if($user->profile_picture_id){
+            if(FileModel::find($user->profile_picture_id)){
+                $path = url('file/'.$user->profile_picture_id);
+            }
+        }
+        return $path;
     }
 }

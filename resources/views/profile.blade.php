@@ -22,11 +22,17 @@
             ]) !!}
 
                 <div class="col-sm-4">
-                    {!! Html::image(
-                        'img/default-'.($user->gender?'male':'female').'.png'
-                        , $user->name.' pic'
-                        , ['class' => 'well img-responsive']
-                    ) !!}
+                    <div class="well">
+                        {!! Html::image(
+                            ppSrc($user)
+                            , $user->name.' pic'
+                            , ['class' => 'img-responsive']
+                        ) !!}
+                        <h3>
+                            Browse Your Image Files to 
+                            set a new Profile Picture
+                        </h3>
+                    </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

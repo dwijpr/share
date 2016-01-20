@@ -46,6 +46,7 @@
                 max-height: 18px;
                 border-radius: 2px;
                 margin-right: 4px;
+                background: grey;
             }
         </style>
 
@@ -101,7 +102,7 @@
                                     aria-expanded="false"
                                 >
                                     {!! Html::image(
-                                        'img/default-'.($user->gender?'male':'female').'.png'
+                                        ppSrc($user)
                                         , $user->name.' pic'
                                         , [
                                             'class' => 
