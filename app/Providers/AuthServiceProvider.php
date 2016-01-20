@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Schema;
 
 use ShareApp\Folder;
 use ShareApp\File;
+use ShareApp\Number;
 
 use ShareApp\Policies\FolderPolicy;
 use ShareApp\Policies\FilePolicy;
+use ShareApp\Policies\NumberPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Folder::class => FolderPolicy::class,
         File::class => FilePolicy::class,
+        Number::class => NumberPolicy::class,
     ];
 
     /**

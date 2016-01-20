@@ -79,10 +79,12 @@ class ProfileController extends Controller
     }
 
     public function numberEdit(Number $number){
+        $this->authorize('all', $number);
         return view('numbers.edit', ['number' => $number]);
     }
 
     public function numberUpdate(Request $request, Number $number){
+        $this->authorize('all', $number);
         $this->validate($request, $this->numberValidationRules());
         $number->update($this->numberData($request->all()));
 
