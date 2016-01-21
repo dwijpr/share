@@ -11,7 +11,7 @@ class Activity extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'type', 'item_id', 
+        'type', 'item_id', 'user_id',
     ];
 
     protected $dates = ['deleted_at'];

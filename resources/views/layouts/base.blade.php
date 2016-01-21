@@ -64,19 +64,20 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/">
+                        <i class="fa fa-share"></i>
                         {{ config('app.name') }}
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
 
-                    @if (Auth::user())
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="/home">Home</a></li>
 
-                        <ul class="nav navbar-nav navbar-left">
-                            <li><a href="/home">Home</a></li>
+                        @if (Auth::user())
                             <li><a href="/files">Files</a></li>
-                        </ul>
-
-                    @endif
+                        @endif
+                        
+                    </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 

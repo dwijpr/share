@@ -20,7 +20,7 @@ class FilesController extends Controller
 
     public function __construct(){
         parent::__construct();
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['file']]);
         $this->user = auth()->user();
     }
 
@@ -127,7 +127,9 @@ class FilesController extends Controller
     }
 
     public function file(FileModel $file){
-        $this->authorize('all', $file);
+        if($file->folder->user->profile_picture_id !== $file->id){
+            $this->authorize('all', $file);
+        }
         $_file = fileInfo($file);
         $response = Response::make($_file['file'], 200);
         $response->header("Content-Type", $_file['type']);

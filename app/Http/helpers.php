@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\Session;
 
 use ShareApp\File as FileModel;
 use ShareApp\User;
+use ShareApp\Activity;
+
+if(!function_exists('translate')){
+    function translate(Activity $activity){
+        return "<a href='/profile/view/{$activity->user->id}'>{$activity->user->name}</a>"
+        ." has joined the app";
+    }
+}
 
 if(!function_exists('fmsgs')){
     function fmsgs($message = false){

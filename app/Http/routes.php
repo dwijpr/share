@@ -28,12 +28,9 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware' => ['web']], function(){
-    Route::get('/', function(){
-        return view('welcome');
-    })->middleware('guest');
-
     Route::auth();
 
+    Route::get('/', 'HomeController@index');
     Route::get('home', 'HomeController@index');
 
     Route::get('files/{folder?}', 'FilesController@index');
@@ -55,6 +52,8 @@ Route::group(['middleware' => ['web']], function(){
 
     Route::get('change_password', 'ProfileController@passwordChange');
     Route::post('change_password', 'ProfileController@passwordUpdate');
+
+    Route::get('profile/view/{user}', 'HomeController@profile');
 
     Route::get('profile', 'ProfileController@index');
     Route::patch('profile/update', 'ProfileController@update');

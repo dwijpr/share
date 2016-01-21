@@ -73,6 +73,11 @@
                                         <i class="fa fa-close"></i>
                                     </button>
                                 {!! Form::close() !!}
+                                <button 
+                                    class="btn btn-primary share"
+                                >
+                                    <i class="fa fa-share"></i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -125,6 +130,10 @@
         $(".delete").click(function(e){
             e.stopPropagation();
             return confirm("Are you sure?");
+        });
+        $(".share").click(function(e){
+            e.stopPropagation();
+            return confirm("Share file?");
         });
     </script>
 
