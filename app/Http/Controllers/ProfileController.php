@@ -13,6 +13,7 @@ use ShareApp\Number;
 
 use Validator;
 use Hash;
+use DB;
 
 class ProfileController extends Controller
 {

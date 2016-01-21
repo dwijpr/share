@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use ShareApp\Http\Requests;
 use ShareApp\Http\Controllers\Controller;
 
+use ShareApp\Activity;
+
 class HomeController extends Controller
 {
     public function __construct(){
@@ -15,6 +17,6 @@ class HomeController extends Controller
     }
 
     public function index(){
-        return view('home');
+        return view('home', ['activities' => Activity::all()]);
     }
 }

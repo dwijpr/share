@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Session;
 use ShareApp\File as FileModel;
 use ShareApp\User;
 
-use File;
-
 if(!function_exists('fmsgs')){
     function fmsgs($message = false){
         $msgs = Session::get('fmsgs');

@@ -17,7 +17,7 @@ class CreateNumbersTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->string('value');
             $table->string('label');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

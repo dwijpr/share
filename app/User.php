@@ -59,4 +59,8 @@ class User extends Authenticatable
     public function folders(){
         return $this->hasMany(Folder::class);
     }
+
+    public function activities(){
+        return $this->hasMany(Activity::class);
+    }
 }

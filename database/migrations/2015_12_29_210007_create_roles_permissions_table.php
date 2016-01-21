@@ -16,13 +16,13 @@ class CreateRolesPermissionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('label')->nullable();
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
         Schema::create('permissions', function(Blueprint $table){
             $table->increments('id');
             $table->string('name');
             $table->string('label')->nullable();
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
         Schema::create('permission_role', function(Blueprint $table){
             $table->integer('role_id')->unsigned();

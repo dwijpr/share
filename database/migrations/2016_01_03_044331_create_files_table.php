@@ -17,7 +17,7 @@ class CreateFilesTable extends Migration
             $table->integer('folder_id')->unsigned()->index();
             $table->string('name');
             $table->string('filename');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

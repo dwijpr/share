@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use ShareApp\User;
 use ShareApp\Folder;
 use ShareApp\File;
+use ShareApp\Activity;
 
 use Storage;
 
@@ -22,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
         User::created(function(User $user){
             Folder::create([
                 'name' => '/',
+                'user_id' => $user->id,
+            ]);
+            Activity::create([
+                'type' => 'user_created',
                 'user_id' => $user->id,
             ]);
         });
