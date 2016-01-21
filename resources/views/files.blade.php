@@ -6,77 +6,79 @@
     @parent
 
     @if(count($folder->folders) or count($folder->files))
-    <table class="table table-hover table-stripped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if($folder->parent_id)
-                <tr>
-                    <td 
-                        colspan="3"
-                        onclick="window.location = '/files/{{ $folder->parent_id }}'" 
-                        style="cursor: pointer;" 
-                    >
-                        ..
-                    </td>
-                </tr>
-            @endif
-            @foreach($folder->folders as $_folder)
-                <tr
-                    onclick="window.location = '/files/{{ $_folder->id }}'"
-                    style="cursor: pointer;"
-                >
-                    <td>
-                        <i class="fa fa-folder"></i>
-                        {{ $_folder->name }}
-                    </td>
-                    <td>
-                        {!! Form::open([
-                            'url' => '/files/folder/delete/'.$_folder->id,
-                            'class' => 'form-horizontal',
-                            'method' => 'delete',
-                            'style' => 'display: inline-block;'
-                        ]) !!}
-                            <button 
-                                class="btn btn-danger delete"
+        <div class="table-responsive">
+            <table class="table table-hover table-stripped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if($folder->parent_id)
+                        <tr>
+                            <td 
+                                colspan="3"
+                                onclick="window.location = '/files/{{ $folder->parent_id }}'" 
+                                style="cursor: pointer;" 
                             >
-                                <i class="fa fa-close"></i>
-                            </button>
-                        {!! Form::close() !!}
-                    </td>
-                </tr>
-            @endforeach
-            @foreach($folder->files as $file)
-                <tr
-                    onclick="window.location = '/file/view/{{ $file->id }}'"
-                    style="cursor: pointer;"
-                >
-                    <td>
-                        <i class="fa fa-file"></i>
-                        {{ $file->name }}
-                    </td>
-                    <td>
-                        {!! Form::open([
-                            'url' => '/file/'.$file->id,
-                            'class' => 'form-horizontal',
-                            'method' => 'delete',
-                            'style' => 'display: inline-block;'
-                        ]) !!}
-                            <button 
-                                class="btn btn-danger delete"
-                            >
-                                <i class="fa fa-close"></i>
-                            </button>
-                        {!! Form::close() !!}
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+                                ..
+                            </td>
+                        </tr>
+                    @endif
+                    @foreach($folder->folders as $_folder)
+                        <tr
+                            onclick="window.location = '/files/{{ $_folder->id }}'"
+                            style="cursor: pointer;"
+                        >
+                            <td>
+                                <i class="fa fa-folder"></i>
+                                {{ $_folder->name }}
+                            </td>
+                            <td>
+                                {!! Form::open([
+                                    'url' => '/files/folder/delete/'.$_folder->id,
+                                    'class' => 'form-horizontal',
+                                    'method' => 'delete',
+                                    'style' => 'display: inline-block;'
+                                ]) !!}
+                                    <button 
+                                        class="btn btn-danger delete"
+                                    >
+                                        <i class="fa fa-close"></i>
+                                    </button>
+                                {!! Form::close() !!}
+                            </td>
+                        </tr>
+                    @endforeach
+                    @foreach($folder->files as $file)
+                        <tr
+                            onclick="window.location = '/file/view/{{ $file->id }}'"
+                            style="cursor: pointer;"
+                        >
+                            <td>
+                                <i class="fa fa-file"></i>
+                                {{ $file->name }}
+                            </td>
+                            <td>
+                                {!! Form::open([
+                                    'url' => '/file/'.$file->id,
+                                    'class' => 'form-horizontal',
+                                    'method' => 'delete',
+                                    'style' => 'display: inline-block;'
+                                ]) !!}
+                                    <button 
+                                        class="btn btn-danger delete"
+                                    >
+                                        <i class="fa fa-close"></i>
+                                    </button>
+                                {!! Form::close() !!}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     @else
         <h1 class="text-center">
             This folder is Empty
@@ -116,6 +118,8 @@
 
 
 @section('scripts')
+
+    @parent
 
     <script>
         $(".delete").click(function(e){

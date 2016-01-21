@@ -80,6 +80,11 @@
             class="file-view" 
             src="{{ $file->src }}"
         >
+    @elseif($file->type === 'audio')
+        <audio class="file-view" controls>
+            <source src="{{ $file->src }}">
+            Your browser does not support the audio element.
+        </audio>
     @else
         <h1 class="text-danger text-center">
             No Preview Available for 
