@@ -19,6 +19,11 @@ if(!function_exists('show')){
         }
         if($file){
             switch ($file->type) {
+                case 'audio':
+                    return "<audio class=\"file-view\" controls>"
+                    ."<source src=\"$file->src\">"
+                    ."Your browser does not support the audio element."
+                    ."</audio>";
                 case 'video':
                     return "<video class=\"file-view\" controls>"
                     ."<source src=\"$file->src\">"
