@@ -10,10 +10,30 @@ use ShareApp\Activity;
 
 if(!function_exists('translate')){
     function translate(Activity $activity){
-        return "<a href='/profile/view/{$activity->user->id}'>"
-        ."<img class='img-profile-picture' src='".ppSrc($activity->user)."'>"
-        ."{$activity->user->name}</a>"
-        ." has joined the app";
+
+        switch ($activity->type) {
+            case 'user_created':
+                return "<a href='/profile/view/{$activity->user->id}'>"
+                ."<img class='img-profile-picture' src='".ppSrc($activity->user)."'>"
+                ."{$activity->user->name}</a>"
+                ." has joined the app";
+            case 'profile_picture_updated':
+                return "<a href='/profile/view/{$activity->user->id}'>"
+                ."<img class='img-profile-picture' src='".ppSrc($activity->user)."'>"
+                ."{$activity->user->name}</a>"
+                ." has updated ".callUser($activity->user)." profile picture";
+            default:
+                return "Unknown Activity ...";
+        }
+    }
+}
+
+if(!function_exists('callUser')){
+    function callUser(User $user){
+        if($user->gender){
+            return "his";
+        }
+        return "her";
     }
 }
 

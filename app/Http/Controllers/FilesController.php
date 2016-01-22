@@ -13,6 +13,7 @@ use Response;
 
 use ShareApp\Folder;
 use ShareApp\File as FileModel;
+use ShareApp\Activity;
 
 class FilesController extends Controller
 {
@@ -140,6 +141,11 @@ class FilesController extends Controller
         $this->authorize('all', $file);
         $this->user->profile_picture_id = $file->id;
         $this->user->save();
+        Activity::create([
+            'type' => 'profile_picture_updated',
+            'item_id' => $file->id,
+            'user_id' => $this->user->id,
+        ]);
         fmsgs([
             'title' => 'Profile Picture Updated',
             'type' => 'success',
