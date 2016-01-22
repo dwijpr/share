@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Session;
 
+use Carbon\Carbon;
+
 use ShareApp\File as FileModel;
 use ShareApp\User;
 use ShareApp\Activity;
@@ -12,6 +14,12 @@ if(!function_exists('translate')){
         ."<img class='img-profile-picture' src='".ppSrc($activity->user)."'>"
         ."{$activity->user->name}</a>"
         ." has joined the app";
+    }
+}
+
+if(!function_exists('humanRead')){
+    function humanRead(Activity $activity){
+        return $activity->updated_at->diffForHumans();
     }
 }
 
