@@ -9,6 +9,9 @@ use ShareApp\Http\Controllers\Controller;
 
 use ShareApp\Activity;
 use ShareApp\User;
+use ShareApp\File as FileModel;
+
+use DB;
 
 class HomeController extends Controller
 {
@@ -17,9 +20,21 @@ class HomeController extends Controller
     }
 
     public function index(){
+        $activities = Activity::orderBy('updated_at', 'desc')->get();
+        $activities = $activities->unique(function ($item) {
+            return $item->user_id.$item->type.$item->item_id;
+        });
+        // dd($activities);
+        foreach($activities as $index => $activity) {
+            if($activity->item_id){
+                $file = FileModel::find($activity->item_id);
+                if(!$file || !$file->shared){
+                    unset($activities[$index]);
+                }
+            }
+        }
         return view('home', [
-            'activities' => 
-                Activity::orderBy('updated_at', 'desc')->get()
+            'activities' => $activities,
         ]);
     }
 

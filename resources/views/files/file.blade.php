@@ -15,12 +15,24 @@
             </a>
         </li>
         @can('all', $file)
-            @if($file->type === 'image')
+            @if($file->id !== $file->folder->user->profile_picture_id)
                 <li>
-                    <a href="/change_profile_picture/{{ $file->id }}">
-                        Set As Profile Picture
+                    <a 
+                        href="/{{ 
+                            ($file->shared?'unshare':'share')
+                            .'/'.$file->id 
+                        }}" 
+                    >
+                        {{ $file->shared?'Unshare':'Share' }}
                     </a>
                 </li>
+                @if($file->type === 'image')
+                    <li>
+                        <a href="/change_profile_picture/{{ $file->id }}">
+                            Set As Profile Picture
+                        </a>
+                    </li>
+                @endif
             @endif
         @endcan
     </ul>
@@ -41,11 +53,27 @@
             <span class="hidden-sm hidden-xs">Download</span>
         </a>
         @can('all', $file)
-            @if($file->type === 'image')
-                <a href="/change_profile_picture/{{ $file->id }}" class="btn btn-info">
-                    <i class="fa fa-picture-o"></i>
-                    <span class="hidden-sm hidden-xs">Set As Profile Picture</span>
+            @if($file->id !== $file->folder->user->profile_picture_id)
+                <a 
+                    href="/{{ 
+                        ($file->shared?'unshare':'share')
+                        .'/'.$file->id 
+                    }}" 
+                    class="btn btn-{{
+                    $file->shared?'warning':'primary'
+                    }} share"
+                >
+                    <i class="fa fa-{{ 
+                        $file->shared?'ban':'share'
+                    }}"></i>
+                    {{ $file->shared?'Unshare':'Share' }}
                 </a>
+                @if($file->type === 'image')
+                    <a href="/change_profile_picture/{{ $file->id }}" class="btn btn-info">
+                        <i class="fa fa-picture-o"></i>
+                        <span class="hidden-sm hidden-xs">Set As Profile Picture</span>
+                    </a>
+                @endif
             @endif
         @endcan
     </p>

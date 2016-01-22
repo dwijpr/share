@@ -122,7 +122,7 @@ class FilesController extends Controller
     }
 
     public function fileView(FileModel $file){
-        if($file->folder->user->profile_picture_id !== $file->id){
+        if(!$file->shared){
             $this->authorize('all', $file);
         }
         $_file = fileInfo($file);
@@ -131,7 +131,7 @@ class FilesController extends Controller
     }
 
     public function file(FileModel $file){
-        if($file->folder->user->profile_picture_id !== $file->id){
+        if(!$file->shared){
             $this->authorize('all', $file);
         }
         $_file = fileInfo($file);
@@ -144,6 +144,7 @@ class FilesController extends Controller
         $this->authorize('all', $file);
         $this->user->profile_picture_id = $file->id;
         $this->user->save();
+        $this->_share($file, 1, false);
         Activity::create([
             'type' => 'profile_picture_updated',
             'item_id' => $file->id,
@@ -157,8 +158,43 @@ class FilesController extends Controller
         return redirect()->back();
     }
 
+    private function _share(FileModel $file, $value, $createActivity = true){
+        $this->authorize('all', $file);
+        $file->shared = $value;
+        $file->save();
+        if($value){
+            if($createActivity){
+                Activity::create([
+                    'type' => 'file_shared',
+                    'item_id' => $file->id,
+                    'user_id' => $this->user->id,
+                ]);
+            }
+            fmsgs([
+                'title' => 'File Shared',
+                'type' => 'success',
+                'text' => 'The '.$file->name.' file successfully shared!',
+            ]);
+        }else{
+            fmsgs([
+                'title' => 'Unshared File',
+                'type' => 'success',
+                'text' => 'The '.$file->name.' file successfully unshared!',
+            ]);
+        }
+        return redirect()->back();
+    }
+
+    public function share(FileModel $file){
+        return $this->_share($file, 1);
+    }
+
+    public function unshare(FileModel $file){
+        return $this->_share($file, 0);
+    }
+
     public function download(FileModel $file){
-        if($file->folder->user->profile_picture_id !== $file->id){
+        if(!$file->shared){
             $this->authorize('all', $file);
         }
         $_file = fileInfo($file);

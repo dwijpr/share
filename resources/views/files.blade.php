@@ -73,11 +73,21 @@
                                         <i class="fa fa-close"></i>
                                     </button>
                                 {!! Form::close() !!}
-                                <button 
-                                    class="btn btn-primary share"
-                                >
-                                    <i class="fa fa-share"></i>
-                                </button>
+                                @if($file->id !== $file->folder->user->profile_picture_id)
+                                    <a 
+                                        href="/{{ 
+                                            ($file->shared?'unshare':'share')
+                                            .'/'.$file->id 
+                                        }}" 
+                                        class="btn btn-{{
+                                        $file->shared?'warning':'primary'
+                                        }} share"
+                                    >
+                                        <i class="fa fa-{{ 
+                                            $file->shared?'ban':'share'
+                                        }}"></i>
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

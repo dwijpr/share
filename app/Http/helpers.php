@@ -38,6 +38,12 @@ if(!function_exists('show')){
 if(!function_exists('translate')){
     function translate(Activity $activity){
         switch ($activity->type) {
+            case 'file_shared':
+                return "<a href='/profile/view/{$activity->user->id}'>"
+                ."<img class='img-profile-picture' src='".ppSrc($activity->user)."'>"
+                ."{$activity->user->name}</a>"
+                ." has shared ".callUser($activity->user)
+                ." <a href='/file/view/".$activity->item_id."'>file</a>";
             case 'user_created':
                 return "<a href='/profile/view/{$activity->user->id}'>"
                 ."<img class='img-profile-picture' src='".ppSrc($activity->user)."'>"

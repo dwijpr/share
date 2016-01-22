@@ -50,6 +50,9 @@ Route::group(['middleware' => ['web']], function(){
         'change_profile_picture/{file}', 'FilesController@setAsProfilePicture'
     );
 
+    Route::get('share/{file}', 'FilesController@share');
+    Route::get('unshare/{file}', 'FilesController@unshare');
+
     Route::get('change_password', 'ProfileController@passwordChange');
     Route::post('change_password', 'ProfileController@passwordUpdate');
 

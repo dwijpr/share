@@ -18,6 +18,7 @@
                             </div>
                             <div class="col-sm-4 text-right text-muted hidden-xs">
                                 {!! humanRead($activity) !!}
+                                {{-- {!! $activity->updated_at !!} --}}
                                 <i class="fa fa-clock-o"></i>
                             </div>
                             @if($activity->item_id)
@@ -29,6 +30,7 @@
                             @endif
                             <div class="col-sm-4 text-muted visible-xs">
                                 {!! humanRead($activity) !!}
+                                {{-- {!! $activity->updated_at !!} --}}
                                 <i class="fa fa-clock-o"></i>
                             </div>
                         </div>
