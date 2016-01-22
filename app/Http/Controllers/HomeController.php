@@ -24,7 +24,6 @@ class HomeController extends Controller
         $activities = $activities->unique(function ($item) {
             return $item->user_id.$item->type.$item->item_id;
         });
-        // dd($activities);
         foreach($activities as $index => $activity) {
             if($activity->item_id){
                 $file = FileModel::find($activity->item_id);
