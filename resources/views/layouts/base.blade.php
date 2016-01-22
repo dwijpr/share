@@ -53,6 +53,20 @@
                 max-width: 24px;
                 max-height: 24px;
             }
+            
+            .file-view{
+                display: block;
+                max-width: 100%;
+                max-height: 256px;
+                margin: 0 auto;
+                border: 1px solid rgba(0, 0, 0, .4);
+                border-radius: 5px;
+            }
+            @media (min-width: 768px){
+                .file-view{
+                    max-height: 384px;
+                }
+            }
         </style>
 
         @yield('styles')
@@ -157,10 +171,12 @@
                 <div class="col-sm-12">
                     <div class="footer text-center">
                         <hr>
-                        <p class="lead">
-                            <a href="/">
-                                {{ config('app.name') }}&copy;{{ date('Y') }}
-                            </a>
+                        <p style="padding-bottom: 8px;">
+                            <b>
+                                <a href="/">
+                                    {{ config('app.name') }}&copy;{{ date('Y') }}
+                                </a>
+                            </b>
                         </p>
                     </div>
                 </div>

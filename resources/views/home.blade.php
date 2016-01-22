@@ -16,7 +16,18 @@
                             <div class="col-sm-8">
                                 {!! translate($activity) !!}
                             </div>
-                            <div class="col-sm-4 text-right text-muted">
+                            <div class="col-sm-4 text-right text-muted hidden-xs">
+                                {!! humanRead($activity) !!}
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                            @if($activity->item_id)
+                                <div class="col-sm-12">
+                                    <div class="well" style="margin-top: 8px;">
+                                        {!! show($activity) !!}
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-sm-4 text-muted visible-xs">
                                 {!! humanRead($activity) !!}
                                 <i class="fa fa-clock-o"></i>
                             </div>

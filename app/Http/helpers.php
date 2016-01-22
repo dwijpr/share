@@ -8,9 +8,35 @@ use ShareApp\File as FileModel;
 use ShareApp\User;
 use ShareApp\Activity;
 
+if(!function_exists('show')){
+    function show(Activity $activity){
+        $file = false;
+        $_file = false;
+        if($activity->item_id){
+            $file = FileModel::findOrFail($activity->item_id);
+            $_file = fileInfo($file);
+            $file = updateFile($file, $_file);
+        }
+        if($file){
+            switch ($file->type) {
+                case 'video':
+                    return "<video class=\"file-view\" controls>"
+                    ."<source src=\"$file->src\">"
+                    ."Your browser does not support the video tag."
+                    ."</video>";
+                case 'image':
+                    return "<img id=\"image-view\" class=\"file-view\" "
+                    ."src=\"$file->src\""
+                    .">";
+                default:
+                    return 'Unknown file type...';
+            }
+        }
+    }
+}
+
 if(!function_exists('translate')){
     function translate(Activity $activity){
-
         switch ($activity->type) {
             case 'user_created':
                 return "<a href='/profile/view/{$activity->user->id}'>"
@@ -21,7 +47,8 @@ if(!function_exists('translate')){
                 return "<a href='/profile/view/{$activity->user->id}'>"
                 ."<img class='img-profile-picture' src='".ppSrc($activity->user)."'>"
                 ."{$activity->user->name}</a>"
-                ." has updated ".callUser($activity->user)." profile picture";
+                ." has updated ".callUser($activity->user)
+                ." <a href='/file/view/".$activity->item_id."'>profile picture</a>";
             default:
                 return "Unknown Activity ...";
         }
@@ -74,6 +101,16 @@ if(!function_exists('fileInfo')){
             'type' => $type,
             'path' => $path,
         ];
+    }
+}
+
+if(!function_exists('updateFile')){
+    function updateFile(FileModel $file, array $_file){
+        $types = explode('/', $_file['type']);
+        $file->type = $types[0];
+        $file->typeDetail = $types[1];
+        $file->src = url('file/'.$file->id);
+        return $file;
     }
 }
 

@@ -1,29 +1,6 @@
 @extends('layouts.base.file')
 
 
-@section('styles')
-
-    @parent
-
-    <style>
-        .file-view{
-            display: block;
-            max-width: 100%;
-            max-height: 256px;
-            margin: 0 auto;
-            border: 1px solid rgba(0, 0, 0, .4);
-            border-radius: 5px;
-        }
-        @media (min-width: 768px){
-            .file-view{
-                max-height: 384px;
-            }
-        }
-    </style>
-
-@endsection
-
-
 @section('navsidebar')
 
     <ul class="nav nav-sidebar">
@@ -37,13 +14,15 @@
                 Download
             </a>
         </li>
-        @if($file->type === 'image')
-            <li>
-                <a href="/change_profile_picture/{{ $file->id }}">
-                    Set As Profile Picture
-                </a>
-            </li>
-        @endif
+        @can('all', $file)
+            @if($file->type === 'image')
+                <li>
+                    <a href="/change_profile_picture/{{ $file->id }}">
+                        Set As Profile Picture
+                    </a>
+                </li>
+            @endif
+        @endcan
     </ul>
 
 @endsection
@@ -61,12 +40,14 @@
             <i class="fa fa-download"></i>
             <span class="hidden-sm hidden-xs">Download</span>
         </a>
-        @if($file->type === 'image')
-            <a href="/change_profile_picture/{{ $file->id }}" class="btn btn-info">
-                <i class="fa fa-picture-o"></i>
-                <span class="hidden-sm hidden-xs">Set As Profile Picture</span>
-            </a>
-        @endif
+        @can('all', $file)
+            @if($file->type === 'image')
+                <a href="/change_profile_picture/{{ $file->id }}" class="btn btn-info">
+                    <i class="fa fa-picture-o"></i>
+                    <span class="hidden-sm hidden-xs">Set As Profile Picture</span>
+                </a>
+            @endif
+        @endcan
     </p>
 
     @if($file->type === 'video')

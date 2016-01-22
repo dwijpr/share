@@ -21,7 +21,11 @@ class FilesController extends Controller
 
     public function __construct(){
         parent::__construct();
-        $this->middleware('auth', ['except' => ['file']]);
+        $this->middleware('auth', [
+            'except' => [
+                'file', 'fileView', 'download',
+            ]
+        ]);
         $this->user = auth()->user();
     }
 
@@ -118,12 +122,11 @@ class FilesController extends Controller
     }
 
     public function fileView(FileModel $file){
-        $this->authorize('all', $file);
+        if($file->folder->user->profile_picture_id !== $file->id){
+            $this->authorize('all', $file);
+        }
         $_file = fileInfo($file);
-        $types = explode('/', $_file['type']);
-        $file->type = $types[0];
-        $file->typeDetail = $types[1];
-        $file->src = url('file/'.$file->id);
+        $file = updateFile($file, $_file);
         return view('files.file', ['file' => $file]);
     }
 
@@ -155,7 +158,9 @@ class FilesController extends Controller
     }
 
     public function download(FileModel $file){
-        $this->authorize('all', $file);
+        if($file->folder->user->profile_picture_id !== $file->id){
+            $this->authorize('all', $file);
+        }
         $_file = fileInfo($file);
         return Response::download($_file['path'], $file->name);
     }
