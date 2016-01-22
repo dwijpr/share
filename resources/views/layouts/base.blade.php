@@ -42,11 +42,16 @@
                 margin-top: 0;
             }
 
-            .nav > li > a > img.img-profile-picture{
+            .nav > li > a > img.img-profile-picture, .img-profile-picture{
                 max-height: 18px;
                 border-radius: 2px;
                 margin-right: 4px;
                 background: grey;
+            }
+            .img-profile-picture{
+                border: 1px solid grey;
+                max-width: 24px;
+                max-height: 24px;
             }
         </style>
 

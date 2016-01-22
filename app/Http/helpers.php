@@ -8,7 +8,9 @@ use ShareApp\Activity;
 
 if(!function_exists('translate')){
     function translate(Activity $activity){
-        return "<a href='/profile/view/{$activity->user->id}'>{$activity->user->name}</a>"
+        return "<a href='/profile/view/{$activity->user->id}'>"
+        ."<img class='img-profile-picture' src='".ppSrc($activity->user)."'>"
+        ."{$activity->user->name}</a>"
         ." has joined the app";
     }
 }

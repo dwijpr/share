@@ -19,6 +19,8 @@ class UsersTableSeeder extends Seeder
             'name' => 'Dwi Prabowo',
             'email' => 'dwijpr@gmail.com',
             'password' => bcrypt('asdfasdf'),
+            'remember_token' => str_random(10),
+            'gender' => 1,
         ]);
         Role::create([
             'name' => 'admin',
@@ -40,6 +42,8 @@ class UsersTableSeeder extends Seeder
             'name' => 'Owl Jpr',
             'email' => 'owljpr@gmail.com',
             'password' => bcrypt('asdfasdf'),
+            'remember_token' => str_random(10),
+            'gender' => 1,
         ]);
 
         for($i = 0;$i < 10;$i++){
