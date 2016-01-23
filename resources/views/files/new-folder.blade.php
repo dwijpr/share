@@ -23,30 +23,6 @@
 
     @parent
 
-    {!! Form::open([
-        'method' => 'post',
-    ]) !!}
-
-        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-            {!! Form::text(
-                'name', null, [
-                    'class' => 'form-control',
-                    'placeHolder' => 'Folder Name',
-                    'autofocus' => 'autofocus',
-                ]
-            ) !!}
-
-            @if ($errors->has('name'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('name') }}</strong>
-                </span>
-            @endif
-        </div>
-
-        <div class="form-group">
-            {!! Form::submit('Create', ['class' => 'btn btn-primary']) !!}
-        </div>
-
-    {!! Form::close() !!}
+    @include('files.partials.form')
     
 @endsection

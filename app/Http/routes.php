@@ -53,6 +53,11 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('share/{file}', 'FilesController@share');
     Route::get('unshare/{file}', 'FilesController@unshare');
 
+    Route::get('rename/folder/{folder}', 'FilesController@folderRename');
+    Route::get('rename/file/{file}', 'FilesController@fileRename');
+    Route::post('rename/folder/{folder}', 'FilesController@folderUpdate');
+    Route::post('rename/file/{file}', 'FilesController@fileUpdate');
+
     Route::get('change_password', 'ProfileController@passwordChange');
     Route::post('change_password', 'ProfileController@passwordUpdate');
 

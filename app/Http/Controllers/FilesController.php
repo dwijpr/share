@@ -46,7 +46,7 @@ class FilesController extends Controller
         return view('files.new-folder', ['folder' => $folder]);
     }
 
-    private function folderValidationRules(){
+    private function nameValidationRules(){
         return [
             'name' => 'required',
         ];
@@ -54,7 +54,7 @@ class FilesController extends Controller
 
     public function createFolder(Request $request, Folder $folder){
         $this->authorize('all', $folder);
-        $this->validate($request, $this->folderValidationRules());
+        $this->validate($request, $this->nameValidationRules());
 
         Folder::create([
             'parent_id' => $folder->id,
@@ -208,6 +208,54 @@ class FilesController extends Controller
             'title' => 'File Deleted',
             'type' => 'success',
             'text' => 'The '.$file->name.' file successfully deleted!',
+        ]);
+        return redirect('/files/'.$file->folder->id);
+    }
+
+    public function folderRename(Folder $folder){
+        $this->authorize('all', $folder);
+        return view('files.rename', [
+            'type' => 'folder',
+            'item' => $folder,
+            'folder' => $folder->folder,
+        ]);
+    }
+
+    public function folderUpdate(Request $request, Folder $folder){
+        $this->authorize('all', $folder);
+        $this->validate($request, $this->nameValidationRules());
+
+        $folder->name = $request->name;
+        $folder->save();
+
+        fmsgs([
+            'title' => 'Folder Renamed',
+            'type' => 'success',
+            'text' => 'The folder name changed',
+        ]);
+        return redirect('/files/'.$folder->folder->id);
+    }
+
+    public function fileRename(FileModel $file){
+        $this->authorize('all', $file);
+        return view('files.rename', [
+            'type' => 'file',
+            'item' => $file,
+            'folder' => $file->folder,
+        ]);
+    }
+
+    public function fileUpdate(Request $request, FileModel $file){
+        $this->authorize('all', $file);
+        $this->validate($request, $this->nameValidationRules());
+
+        $file->name = $request->name;
+        $file->save();
+
+        fmsgs([
+            'title' => 'File Renamed',
+            'type' => 'success',
+            'text' => 'The file name changed',
         ]);
         return redirect('/files/'.$file->folder->id);
     }

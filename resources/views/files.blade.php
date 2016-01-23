@@ -44,10 +44,18 @@
                                 ]) !!}
                                     <button 
                                         class="btn btn-danger delete"
+                                        title="Delete" 
                                     >
                                         <i class="fa fa-close"></i>
                                     </button>
                                 {!! Form::close() !!}
+                                <a
+                                    href="/rename/folder/{{ $_folder->id }}"
+                                    class="btn btn-success rename"
+                                    title="Rename" 
+                                >
+                                    <i class="fa fa-edit"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -69,6 +77,7 @@
                                 ]) !!}
                                     <button 
                                         class="btn btn-danger delete"
+                                        title="Delete" 
                                     >
                                         <i class="fa fa-close"></i>
                                     </button>
@@ -82,12 +91,22 @@
                                         class="btn btn-{{
                                         $file->shared?'warning':'primary'
                                         }} share"
+                                        title="{{
+                                            $file->shared?'unshare':'share'
+                                        }}" 
                                     >
                                         <i class="fa fa-{{ 
                                             $file->shared?'ban':'share'
                                         }}"></i>
                                     </a>
                                 @endif
+                                <a
+                                    href="/rename/file/{{ $file->id }}"
+                                    class="btn btn-success rename"
+                                    title="Rename" 
+                                >
+                                    <i class="fa fa-edit"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -144,6 +163,10 @@
         $(".share").click(function(e){
             e.stopPropagation();
             return confirm("Share file?");
+        });
+        $(".rename").click(function(e){
+            e.stopPropagation();
+            return true;
         });
     </script>
 
