@@ -18,19 +18,22 @@
                             </div>
                             <div class="col-sm-4 text-right text-muted hidden-xs">
                                 {!! humanRead($activity) !!}
-                                {{-- {!! $activity->updated_at !!} --}}
                                 <i class="fa fa-clock-o"></i>
                             </div>
                             @if($activity->item_id)
                                 <div class="col-sm-12">
                                     <div class="well" style="margin-top: 8px;">
+                                        @if(showName($activity))
+                                            <h4 class="text-center">
+                                                {!! showName($activity) !!}
+                                            </h4>
+                                        @endif
                                         {!! show($activity) !!}
                                     </div>
                                 </div>
                             @endif
                             <div class="col-sm-4 text-muted visible-xs">
                                 {!! humanRead($activity) !!}
-                                {{-- {!! $activity->updated_at !!} --}}
                                 <i class="fa fa-clock-o"></i>
                             </div>
                         </div>

@@ -8,6 +8,17 @@ use ShareApp\File as FileModel;
 use ShareApp\User;
 use ShareApp\Activity;
 
+if(!function_exists('showName')){
+    function showName(Activity $activity){
+        $name = false;
+        if($activity->item_id){
+            $file = FileModel::findOrFail($activity->item_id);
+            $name = $file->name;
+        }
+        return $name;
+    }
+}
+
 if(!function_exists('show')){
     function show(Activity $activity){
         $file = false;
