@@ -67,6 +67,12 @@
                     max-height: 384px;
                 }
             }
+
+            .truncate {
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
         </style>
 
         @yield('styles')

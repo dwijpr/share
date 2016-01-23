@@ -24,7 +24,7 @@
                                 <div class="col-sm-12">
                                     <div class="well" style="margin-top: 8px;">
                                         @if(showName($activity))
-                                            <h4 class="text-center">
+                                            <h4 class="text-center truncate">
                                                 {!! showName($activity) !!}
                                             </h4>
                                         @endif
