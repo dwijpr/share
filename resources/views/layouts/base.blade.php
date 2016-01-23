@@ -128,7 +128,7 @@
                                     aria-expanded="false"
                                 >
                                     {!! Html::image(
-                                        ppSrc($user)
+                                        ppSrc($user, 'xs')
                                         , $user->name.' pic'
                                         , [
                                             'class' => 

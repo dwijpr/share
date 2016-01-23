@@ -2,6 +2,10 @@
 
 namespace ShareApp\Http\Controllers;
 
+use Imagine\Image\Box;
+use Imagine\Image\ImageInterface;
+use Orchestra\Imagine\Facade as Imagine;
+
 use Illuminate\Http\Request;
 
 use ShareApp\Http\Requests;
@@ -107,11 +111,15 @@ class FilesController extends Controller
             , file_get_contents($file->getRealPath())
         );
 
-        FileModel::create([
+        $file = FileModel::create([
             'name' => $name,
             'filename' => $filename,
             'folder_id' => $folder->id,
         ]);
+
+        if(explode('/', fileInfo($file)['type'])[0] === 'image'){
+            $this->createOptimizedImage($filename);
+        }
 
         fmsgs([
             'title' => 'File Uploaded',
@@ -130,11 +138,11 @@ class FilesController extends Controller
         return view('files.file', ['file' => $file]);
     }
 
-    public function file(FileModel $file){
+    public function file(FileModel $file, $suffix = false){
         if(!$file->shared){
             $this->authorize('all', $file);
         }
-        $_file = fileInfo($file);
+        $_file = fileInfo($file, $suffix);
         $response = Response::make($_file['file'], 200);
         $response->header("Content-Type", $_file['type']);
         return $response;
@@ -258,5 +266,23 @@ class FilesController extends Controller
             'text' => 'The file name changed',
         ]);
         return redirect('/files/'.$file->folder->id);
+    }
+
+    function createOptimizedImage($filename){
+        $this->createImage(512, 384, 'opt', $filename);
+        $this->createImage(64, 24, 'xs', $filename);
+    }
+
+    private function createImage($width, $height, $suffix, $filename){
+        $name = explode('.', $filename)[0];
+        $extension = explode('.', $filename)[1];
+
+        $mode   = ImageInterface::THUMBNAIL_INSET;
+        $size   = new Box($width, $height);
+        $newImage = Imagine::open(
+            storage_path('app/'.$filename)
+        )->thumbnail($size, $mode);
+        $destination = "{$name}.$suffix.{$extension}";
+        $newImage->save(storage_path('app/'.$destination));
     }
 }

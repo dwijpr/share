@@ -162,6 +162,11 @@ return [
          * Collective
          */
         Collective\Html\HtmlServiceProvider::class,
+
+        /*
+         * Orchestra
+         */
+        Orchestra\Imagine\ImagineServiceProvider::class,
     ],
 
     /*
@@ -213,6 +218,7 @@ return [
          */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Imagine' => Orchestra\Imagine\Facade::class,
 
     ],
 

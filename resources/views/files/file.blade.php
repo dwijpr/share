@@ -87,7 +87,7 @@
         <img 
             id="image-view" 
             class="file-view" 
-            src="{{ $file->src }}"
+            src="{{ $file->src.'/opt' }}"
         >
     @elseif($file->type === 'audio')
         <audio class="file-view" controls>

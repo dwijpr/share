@@ -42,7 +42,7 @@ if(!function_exists('show')){
                     ."</video>";
                 case 'image':
                     return "<img id=\"image-view\" class=\"file-view\" "
-                    ."src=\"$file->src\""
+                    ."src=\"$file->src/opt\""
                     .">";
                 default:
                     return 'Unknown file type...';
@@ -56,18 +56,18 @@ if(!function_exists('translate')){
         switch ($activity->type) {
             case 'file_shared':
                 return "<a href='/profile/view/{$activity->user->id}'>"
-                ."<img class='img-profile-picture' src='".ppSrc($activity->user)."'>"
+                ."<img class='img-profile-picture' src='".ppSrc($activity->user, 'xs')."'>"
                 ."{$activity->user->name}</a>"
                 ." has shared ".callUser($activity->user)
                 ." <a href='/file/view/".$activity->item_id."'>file</a>";
             case 'user_created':
                 return "<a href='/profile/view/{$activity->user->id}'>"
-                ."<img class='img-profile-picture' src='".ppSrc($activity->user)."'>"
+                ."<img class='img-profile-picture' src='".ppSrc($activity->user, 'xs')."'>"
                 ."{$activity->user->name}</a>"
                 ." has joined the app";
             case 'profile_picture_updated':
                 return "<a href='/profile/view/{$activity->user->id}'>"
-                ."<img class='img-profile-picture' src='".ppSrc($activity->user)."'>"
+                ."<img class='img-profile-picture' src='".ppSrc($activity->user, 'xs')."'>"
                 ."{$activity->user->name}</a>"
                 ." has updated ".callUser($activity->user)
                 ." <a href='/file/view/".$activity->item_id."'>profile picture</a>";
@@ -114,8 +114,14 @@ if(!function_exists('fmsgs')){
 }
 
 if(!function_exists('fileInfo')){
-    function fileInfo(FileModel $file){
-        $path = storage_path('app') . '/' . $file->filename;
+    function fileInfo(FileModel $file, $suffix = false){
+        if($suffix){
+            $_filename = explode('.', $file->filename);
+            $file->filename = implode(
+                '.', [$_filename[0], $suffix, $_filename[1]]
+            );
+        }
+        $path = storage_path('app/'.$file->filename);
         $_file = File::get($path);
         $type = File::mimeType($path);
         return [
@@ -137,11 +143,14 @@ if(!function_exists('updateFile')){
 }
 
 if(!function_exists('ppSrc')){
-    function ppSrc(User $user){
+    function ppSrc(User $user, $suffix = false){
         $path = 'img/default-'.($user->gender?'male':'female').'.png';
         if($user->profile_picture_id){
             if(FileModel::find($user->profile_picture_id)){
-                $path = url('file/'.$user->profile_picture_id);
+                $path = '/file/'.$user->profile_picture_id;
+                if($suffix){
+                    $path .= "/$suffix";
+                }
             }
         }
         return $path;
