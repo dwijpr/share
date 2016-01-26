@@ -119,6 +119,14 @@ if(!function_exists('fmsgs')){
     }
 }
 
+if(!function_exists('mimeTypeFromString')){
+    function mimeTypeFromString($extension){
+        $mimetypes = new \Guzzle\Http\Mimetypes;
+        $mime = $mimetypes->fromExtension($extension);
+        return $mime;
+    }
+}
+
 if(!function_exists('fileInfo')){
     function fileInfo(FileModel $file, $suffix = false){
         if($suffix){

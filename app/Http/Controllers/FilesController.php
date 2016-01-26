@@ -103,6 +103,22 @@ class FilesController extends Controller
         }
 
         $extension = $file->getClientOriginalExtension();
+
+        if(
+            !$extension
+            || (
+                mimeTypeFromString($extension) 
+                !== File::mimeType($file->getRealPath())
+            )
+        ){
+            fmsgs([
+                'title' => 'File and the Extension is not Valid',
+                'type' => 'error',
+                'text' => 'Please provide a valid file!',
+            ]);
+            return redirect()->back();
+        }
+
         $filename = $file->getFilename() . '.' . $extension;
         $name = $file->getClientOriginalName();
 
@@ -117,7 +133,10 @@ class FilesController extends Controller
             'folder_id' => $folder->id,
         ]);
 
-        if(explode('/', fileInfo($file)['type'])[0] === 'image'){
+        if(
+            explode('/', fileInfo($file)['type'])[0] === 'image'
+            && explode('/', mimeTypeFromString($extension))[0] === 'image'
+        ){
             $this->createOptimizedImage($filename);
         }
 
@@ -206,7 +225,14 @@ class FilesController extends Controller
             $this->authorize('all', $file);
         }
         $_file = fileInfo($file);
-        return Response::download($_file['path'], $file->name);
+
+        $filename_extension = File::extension($file->filename);
+        $name_extension = File::extension($file->name);
+        $saveFileName = $file->name;
+        if($filename_extension != $name_extension){
+            $saveFileName .= ".$filename_extension";
+        }
+        return Response::download($_file['path'], $saveFileName);
     }
 
     public function fileDelete(FileModel $file){
