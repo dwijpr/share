@@ -36,26 +36,7 @@
                                 {{ $_folder->name }}
                             </td>
                             <td>
-                                {!! Form::open([
-                                    'url' => '/files/folder/delete/'.$_folder->id,
-                                    'class' => 'form-horizontal',
-                                    'method' => 'delete',
-                                    'style' => 'display: inline-block;'
-                                ]) !!}
-                                    <button 
-                                        class="btn btn-danger delete"
-                                        title="Delete" 
-                                    >
-                                        <i class="fa fa-close"></i>
-                                    </button>
-                                {!! Form::close() !!}
-                                <a
-                                    href="/rename/folder/{{ $_folder->id }}"
-                                    class="btn btn-success rename"
-                                    title="Rename" 
-                                >
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                @include('partials.list_files_menu_folder')
                             </td>
                         </tr>
                     @endforeach
@@ -69,44 +50,7 @@
                                 {{ $file->name }}
                             </td>
                             <td>
-                                {!! Form::open([
-                                    'url' => '/file/'.$file->id,
-                                    'class' => 'form-horizontal',
-                                    'method' => 'delete',
-                                    'style' => 'display: inline-block;'
-                                ]) !!}
-                                    <button 
-                                        class="btn btn-danger delete"
-                                        title="Delete" 
-                                    >
-                                        <i class="fa fa-close"></i>
-                                    </button>
-                                {!! Form::close() !!}
-                                @if($file->id !== $file->folder->user->profile_picture_id)
-                                    <a 
-                                        href="/{{ 
-                                            ($file->shared?'unshare':'share')
-                                            .'/'.$file->id 
-                                        }}" 
-                                        class="btn btn-{{
-                                        $file->shared?'warning':'primary'
-                                        }} share"
-                                        title="{{
-                                            $file->shared?'unshare':'share'
-                                        }}" 
-                                    >
-                                        <i class="fa fa-{{ 
-                                            $file->shared?'ban':'share'
-                                        }}"></i>
-                                    </a>
-                                @endif
-                                <a
-                                    href="/rename/file/{{ $file->id }}"
-                                    class="btn btn-success rename"
-                                    title="Rename" 
-                                >
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                @include('partials.list_files_menu_file')
                             </td>
                         </tr>
                     @endforeach
@@ -158,7 +102,11 @@
     <script>
         $(".delete").click(function(e){
             e.stopPropagation();
-            return confirm("Are you sure?");
+            var confirmed = confirm("Are you sure?");
+            if(confirmed){
+                $(this)[0].parentNode.submit();
+            }
+            return confirmed;
         });
         $(".share").click(function(e){
             e.stopPropagation();

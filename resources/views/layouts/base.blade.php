@@ -79,6 +79,27 @@
                     font-size: 32px;
                 }
             }
+
+            .thin-border{
+                border: 1px solid rgba(0, 0, 0, .1);
+            }
+
+            .block-center{
+                margin: 0 auto;
+            }
+
+            table.file-menu-wrapper{
+                margin-bottom: 8px;
+                border-radius: 16px;
+                border-collapse: collapse;
+            }
+            table.file-menu-wrapper td{
+                border: 1px solid rgba(0, 0, 0, .1);
+            }
+            table.file-menu-wrapper td a{
+                display: block;
+                padding: 4px 16px;
+            }
         </style>
 
         @yield('styles')
