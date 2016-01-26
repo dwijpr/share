@@ -73,6 +73,12 @@
               overflow: hidden;
               text-overflow: ellipsis;
             }
+
+            @media (max-width: 768px){
+                .bigger-xs{
+                    font-size: 32px;
+                }
+            }
         </style>
 
         @yield('styles')

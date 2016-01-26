@@ -29,6 +29,9 @@
                                             </h4>
                                         @endif
                                         {!! show($activity) !!}
+                                        <div>
+                                            {!! showActions($activity) !!}
+                                        </div>
                                     </div>
                                 </div>
                             @endif

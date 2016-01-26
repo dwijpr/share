@@ -19,6 +19,12 @@ if(!function_exists('showName')){
     }
 }
 
+if(!function_exists('showActions')){
+    function showActions(Activity $activity){
+        return view('partials.activity_actions', ['activity' => $activity]);
+    }
+}
+
 if(!function_exists('show')){
     function show(Activity $activity){
         $file = false;
