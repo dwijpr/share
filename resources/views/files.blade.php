@@ -11,6 +11,7 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Type</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -35,6 +36,7 @@
                                 <i class="fa fa-folder"></i>
                                 {{ $_folder->name }}
                             </td>
+                            <td>Folder</td>
                             <td>
                                 @include('partials.list_files_menu_folder')
                             </td>
@@ -46,9 +48,10 @@
                             style="cursor: pointer;"
                         >
                             <td>
-                                <i class="fa fa-file"></i>
+                                <i class="fa fa-{{ fileIcon($file) }}"></i>
                                 {{ $file->name }}
                             </td>
+                            <td>{{ $file->fullType }}</td>
                             <td>
                                 @include('partials.list_files_menu_file')
                             </td>

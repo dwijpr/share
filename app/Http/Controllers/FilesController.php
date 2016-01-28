@@ -42,6 +42,9 @@ class FilesController extends Controller
 
         $this->authorize('all', $folder);
 
+        foreach($folder->files as $file){
+            $file = updateFile($file, fileInfo($file));
+        }
         return view('files', ['folder' => $folder]);
     }
 

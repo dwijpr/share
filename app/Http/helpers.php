@@ -8,12 +8,29 @@ use ShareApp\File as FileModel;
 use ShareApp\User;
 use ShareApp\Activity;
 
+if(!function_exists('fileIcon')){
+    function fileIcon(FileModel $file){
+        switch ($file->type) {
+            case 'image':
+                return "photo";
+            case 'video':
+                return "film";
+            case 'audio':
+                return "music";
+            default:
+                return "file";
+        }
+    }
+}
+
 if(!function_exists('showName')){
     function showName(Activity $activity){
         $name = false;
         if($activity->item_id){
             $file = FileModel::findOrFail($activity->item_id);
+            $file = updateFile($file, fileInfo($file));
             $name = $file->name;
+            $name = "<i class=\"fa fa-".fileIcon($file)."\"></i> ".$name;
         }
         return $name;
     }
@@ -51,7 +68,8 @@ if(!function_exists('show')){
                     ."src=\"$file->src/opt\""
                     .">";
                 default:
-                    return 'Unknown file type...';
+                    return '<div class="text-center text-danger">'
+                    .'<i class="fa fa-ban"></i> No Preview Available</div>';
             }
         }
     }
@@ -151,6 +169,7 @@ if(!function_exists('updateFile')){
         $types = explode('/', $_file['type']);
         $file->type = $types[0];
         $file->typeDetail = $types[1];
+        $file->fullType = $_file['type'];
         $file->src = url('file/'.$file->id);
         return $file;
     }
