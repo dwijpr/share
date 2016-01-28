@@ -24,7 +24,14 @@ class HomeController extends Controller
         $activities = $activities->unique(function ($item) {
             return $item->user_id.$item->type.$item->item_id;
         });
+        $users = User::all();
+        $userIds = array_map(
+            function($user){ return $user['id']; }, $users->toArray()
+        );
         foreach($activities as $index => $activity) {
+            if(!in_array($activity->user_id, $userIds)){
+                unset($activities[$index]);
+            }
             if($activity->item_id){
                 $file = FileModel::find($activity->item_id);
                 if(!$file || !$file->shared){

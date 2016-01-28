@@ -155,14 +155,14 @@
                                     aria-expanded="false"
                                 >
                                     {!! Html::image(
-                                        ppSrc($user, 'xs')
-                                        , $user->name.' pic'
+                                        ppSrc($userLoggedIn, 'xs')
+                                        , $userLoggedIn->name.' pic'
                                         , [
                                             'class' => 
                                             'img-profile-picture'
                                         ]
                                     ) !!}
-                                    {{ Auth::user()->name }}
+                                    {{ $userLoggedIn->name }}
                                     <span class="caret"></span>
                                 </a>
 

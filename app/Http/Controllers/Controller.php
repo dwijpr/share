@@ -14,6 +14,6 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function __construct(){
-        View::share('user', auth()->user());
+        View::share('userLoggedIn', auth()->user());
     }
 }

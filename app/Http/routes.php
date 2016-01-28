@@ -71,7 +71,7 @@ Route::group(['middleware' => ['web']], function(){
     Route::patch('profile/number/{number}', 'ProfileController@numberUpdate');
     Route::get('profile/number/{number}', 'ProfileController@numberEdit');
 
-    Route::get('dashboard', 'DashboardController@index');
+    Route::get('dashboard', 'DashboardController@users');
     Route::get('dashboard/users', 'DashboardController@users');
     Route::delete('dashboard/user/{user}', 'DashboardController@userDelete');
     Route::get('dashboard/user/new', 'DashboardController@userNew');

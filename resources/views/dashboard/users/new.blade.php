@@ -4,11 +4,13 @@
 @section('navsidebar')
 
     <ul class="nav nav-sidebar">
+        <!--
         <li>
             <a href="/dashboard">
                 Overview
             </a>
         </li>
+        -->
         <li>
             <a href="/dashboard/users">
                 Users
@@ -38,6 +40,7 @@
             'method' => 'POST',
             'user' => @$user,
             'label' => 'Create',
+            'forceEmpty' => true,
         ]
     )
 

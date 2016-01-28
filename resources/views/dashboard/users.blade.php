@@ -5,11 +5,13 @@
 
     @for($i = 0;$i < 1;$i++)
         <ul class="nav nav-sidebar">
+            <!--
             <li>
                 <a href="/dashboard">
                     Overview
                 </a>
             </li>
+            -->
             <li class="active">
                 <a href="/dashboard/users">
                     Users
@@ -47,14 +49,14 @@
             </thead>
             <tbody>
                 <?php $i=1; ?>
-                @foreach ($users as $user)
+                @foreach ($users as $_user)
                     <tr>
                         <td><?= $i ?></td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
+                        <td>{{ $_user->name }}</td>
+                        <td>{{ $_user->email }}</td>
                         <td>
                             <?php $rolesCount = 0; ?>
-                            @foreach($user->roles as $role)
+                            @foreach($_user->roles as $role)
                                 <div>{{ $role->name }}</div>
                                 <?php $rolesCount++; ?>
                             @endforeach
@@ -64,14 +66,14 @@
                         </td>
                         <td>
                             <a 
-                                href="/dashboard/user/edit/{{ $user->id }}" 
+                                href="/dashboard/user/edit/{{ $_user->id }}" 
                                 class="btn btn-info"
                             >
                                 Edit
                             </a>
                             <form 
                                 style="display: inline-block;" 
-                                action="/dashboard/user/{{ $user->id }}"
+                                action="/dashboard/user/{{ $_user->id }}"
                                 method="POST" 
                             >
                                 {{ csrf_field() }}
