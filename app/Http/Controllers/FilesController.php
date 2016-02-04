@@ -108,16 +108,19 @@ class FilesController extends Controller
         $extension = $file->getClientOriginalExtension();
 
         if(
+            /*
             !$extension
             || (
                 mimeTypeFromString($extension) 
                 !== File::mimeType($file->getRealPath())
             )
+            */
+            !$file->isValid()
         ){
             fmsgs([
-                'title' => 'File and the Extension is not Valid',
+                'title' => 'File is not Valid',
                 'type' => 'error',
-                'text' => 'Please provide a valid file!',
+                'text' => $file->getErrorMessage(),
             ]);
             return redirect()->back();
         }

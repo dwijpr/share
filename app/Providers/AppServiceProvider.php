@@ -41,7 +41,22 @@ class AppServiceProvider extends ServiceProvider
         });
 
         File::deleting(function(File $file){
+            $file = updateFile($file, fileInfo($file));
+            $filenames = [];
+            if($file->type == 'image'){
+                $altImages = ['opt', 'xs'];
+                foreach ($altImages as $suffix) {
+                    $name = explode('.', $file->filename)[0];
+                    $extension = explode('.', $file->filename)[1];
+                    array_push($filenames, "{$name}.$suffix.{$extension}");
+                }
+            }
             Storage::delete($file->filename);
+            if(!empty($filenames)){
+                foreach ($filenames as $filename) {
+                    Storage::delete($filename);
+                }
+            }
         });
     }
 
