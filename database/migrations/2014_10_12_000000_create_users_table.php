@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->boolean('gender');
+            $table->boolean('auto_share')->default(true);
             $table->integer('profile_picture_id')->unsigned()->index();
             $table->rememberToken();
             $table->nullableTimestamps();

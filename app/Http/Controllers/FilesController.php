@@ -146,6 +146,10 @@ class FilesController extends Controller
             $this->createOptimizedImage($filename);
         }
 
+        if($this->user->auto_share){
+            $this->_share($file, 1, true, false);
+        }
+
         fmsgs([
             'title' => 'File Uploaded',
             'type' => 'success',
@@ -191,7 +195,9 @@ class FilesController extends Controller
         return redirect()->back();
     }
 
-    private function _share(FileModel $file, $value, $createActivity = true){
+    private function _share(
+        FileModel $file, $value, $createActivity = true, $redirect = true
+    ){
         $this->authorize('all', $file);
         $file->shared = $value;
         $file->save();
@@ -215,7 +221,9 @@ class FilesController extends Controller
                 'text' => 'The '.$file->name.' file successfully unshared!',
             ]);
         }
-        return redirect()->back();
+        if($redirect){
+            return redirect()->back();
+        }
     }
 
     public function share(FileModel $file){

@@ -60,6 +60,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
                         <label class="col-md-4 control-label">Gender</label>
 
@@ -93,6 +94,27 @@
                             @endif
                         </div>
                     </div>
+
+                    <div class="form-group{{ $errors->has('auto_share') ? ' has-error' : '' }}">
+                        <label class="col-md-4 control-label">Auto Share</label>
+
+                        <div class="col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox(
+                                        'auto_share'
+                                        , 1, $user->auto_share
+                                    ) !!}
+                                </label>
+                                @if ($errors->has('auto_share'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('auto_share') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-sm-8 col-sm-offset-4">
                             @if(count($user->numbers))
