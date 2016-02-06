@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Session;
 
 use Carbon\Carbon;
+use \GetId3\GetId3Core as GetId3;
 
 use ShareApp\File as FileModel;
 use ShareApp\User;
@@ -156,9 +157,12 @@ if(!function_exists('fileInfo')){
         $path = storage_path('app/'.$file->filename);
         $_file = File::get($path);
         $type = File::mimeType($path);
+        $getId3 = new GetId3();
+        $mimeType = $getId3
+            ->analyze($path)['mime_type'];
         return [
             'file' => $_file,
-            'type' => $type,
+            'type' => $mimeType,
             'path' => $path,
         ];
     }
