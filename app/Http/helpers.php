@@ -198,6 +198,6 @@ if(!function_exists('ppSrc')){
                 }
             }
         }
-        return $path;
+        return url($path);
     }
 }

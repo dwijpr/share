@@ -80,7 +80,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'gender' => $data['gender'],
-            'auto_share' => @$data['auto_share'],
+            'auto_share' => @$data['auto_share']?:false,
         ];
     }
 }

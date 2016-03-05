@@ -2,7 +2,7 @@
     class="form-horizontal" 
     role="form" 
     method="POST" 
-    action="{{ $action }}"
+    action="{{ url($action) }}"
 >
     {!! csrf_field() !!}
     {{ method_field($method) }}
@@ -89,7 +89,7 @@
                 <label>
                     {!! Form::checkbox(
                         'auto_share'
-                        , 1, $user->auto_share
+                        , 1, @$forceEmpty?null:$user->auto_share
                     ) !!}
                 </label>
                 @if ($errors->has('auto_share'))
