@@ -4,8 +4,8 @@
 @section('breadcrumb')
 
     <ol class="breadcrumb">
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/profile/numbers">Manage Numbers</a></li>
+        <li><a href="{{ url('/profile') }}">Profile</a></li>
+        <li><a href="{{ url('/profile/numbers') }}">Manage Numbers</a></li>
         <li class="active">Edit</li>
     </ol>
 

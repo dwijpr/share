@@ -4,7 +4,7 @@
 @section('breadcrumb')
 
     <ol class="breadcrumb">
-        <li><a href="/profile">Profile</a></li>
+        <li><a href="{{ url('/profile') }}">Profile</a></li>
         <li class="active">Manage Numbers</li>
     </ol>
 

@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="footer text-center">
-                <a href="/">
+                <a href="{{ url('/') }}">
                     {{ config('app.name') }}&copy;{{ date('Y') }}
                 </a>
             </div>

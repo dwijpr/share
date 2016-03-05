@@ -21,10 +21,10 @@
         @if($file->id !== $file->folder->user->profile_picture_id)
             <td>
                 <a 
-                    href="/{{ 
+                    href="{{ url("/".
                         ($file->shared?'unshare':'share')
                         .'/'.$file->id 
-                    }}" 
+                    ) }}" 
                     class="share"
                 >
                     <i class="fa fa-{{ 
@@ -35,7 +35,7 @@
         @endif
         <td>
             <a
-                href="/rename/file/{{ $file->id }}"
+                href="{{ url('/rename/file/'.$file->id) }}"
                 title="Rename"
                 class="rename"
             >

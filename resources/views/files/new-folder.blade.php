@@ -10,7 +10,7 @@
             </a>
         </li>
         <li>
-            <a href="/files/upload/{{ $folder->id }}">
+            <a href="{{ url('/files/upload/'.$folder->id) }}">
                 Upload File
             </a>
         </li>

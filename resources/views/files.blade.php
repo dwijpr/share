@@ -20,7 +20,7 @@
                         <tr>
                             <td 
                                 colspan="3"
-                                onclick="window.location = '/files/{{ $folder->parent_id }}'" 
+                                onclick="window.location = '{{ url('/files/'.$folder->parent_id) }}'" 
                                 style="cursor: pointer;" 
                             >
                                 ..
@@ -29,7 +29,7 @@
                     @endif
                     @foreach($folder->folders as $_folder)
                         <tr
-                            onclick="window.location = '/files/{{ $_folder->id }}'"
+                            onclick="window.location = '{{ url('/files/'.$_folder->id) }}'"
                             style="cursor: pointer;"
                         >
                             <td>
@@ -44,7 +44,7 @@
                     @endforeach
                     @foreach($folder->files as $file)
                         <tr
-                            onclick="window.location = '/file/view/{{ $file->id }}'"
+                            onclick="window.location = '{{ url('/file/view/'.$file->id) }}'"
                             style="cursor: pointer;"
                         >
                             <td>
@@ -69,7 +69,7 @@
             @if($folder->parent_id)
             
                 <a 
-                    href="/files/{{ $folder->parent_id }}" 
+                    href="{{ url('/files/'.$folder->parent_id) }}" 
                     class="btn btn-default visible-xs-block"
                 >
                     <i class="fa fa-sign-out"></i>
@@ -80,13 +80,13 @@
 
             <a
                 class="btn btn-primary visible-xs-block"
-                href="/files/folder/new/{{ $folder->id }}" 
+                href="{{ url('/files/folder/new/'.$folder->id) }}" 
             >
                 <i class="fa fa-folder"></i>
                 Create New Folder
             </a>
             <a
-                href="/files/upload/{{ $folder->id }}"
+                href="{{ url('/files/upload/'.$folder->id) }}"
                 class="btn btn-info visible-xs-block"
             >
                 <i class="fa fa-upload"></i>

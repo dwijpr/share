@@ -4,7 +4,7 @@
 
     <ul class="nav nav-sidebar">
         <li>
-            <a href="/files/folder/new/{{ $folder->id }}">
+            <a href="{{ url('/files/folder/new/'.$folder->id) }}">
                 Create New Folder
             </a>
         </li>

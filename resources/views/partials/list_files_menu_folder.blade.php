@@ -20,7 +20,7 @@
         </td>
         <td>
             <a
-                href="/rename/folder/{{ $_folder->id }}"
+                href="{{ url('/rename/folder/'.$_folder->id) }}"
                 title="Rename"
                 class="rename"
             >

@@ -4,15 +4,8 @@
 @section('navsidebar')
 
     <ul class="nav nav-sidebar">
-        <!--
         <li>
-            <a href="/dashboard">
-                Overview
-            </a>
-        </li>
-        -->
-        <li>
-            <a href="/dashboard/users">
+            <a href="{{ url('/dashboard/users') }}">
                 Users
             </a>
         </li>
@@ -22,7 +15,7 @@
 
     <ul class="nav nav-sidebar">
         <li class="active">
-            <a href="/dashboard/user/new">Create New User</a>
+            <a href="{{ url('/dashboard/user/new') }}">Create New User</a>
         </li>
     </ul>
 

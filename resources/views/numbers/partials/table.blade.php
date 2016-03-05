@@ -17,7 +17,7 @@
                     <td>{{ $number->label }}</td>
                     <td>
                         <a 
-                            href="/profile/number/{{ $number->id }}" 
+                            href="{{ url('/profile/number/'.$number->id) }}" 
                             class="btn btn-info"
                         >
                             <i class="fa fa-edit"></i>

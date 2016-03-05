@@ -25,12 +25,12 @@
 
                         <ul class="nav nav-sidebar">
                             <li class="active">
-                                <a href="/dashboard">
+                                <a href="{{ url('/dashboard') }}">
                                     Overview
                                 </a>
                             </li>
                             <li>
-                                <a href="/dashboard/users">
+                                <a href="{{ url('/dashboard/users') }}">
                                     Users
                                 </a>
                             </li>

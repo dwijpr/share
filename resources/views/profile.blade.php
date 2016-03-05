@@ -132,7 +132,7 @@
                                     </table>
                                 </div>
                             @endif
-                            <a href="/profile/numbers" class="btn btn-info">Manage Numbers</a>
+                            <a href="{{ url('/profile/numbers') }}" class="btn btn-info">Manage Numbers</a>
                         </div>
                     </div>
                     <div class="form-group">

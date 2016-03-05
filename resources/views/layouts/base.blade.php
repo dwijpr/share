@@ -100,13 +100,17 @@
                 display: block;
                 padding: 4px 16px;
             }
+
+            .navbar-default{
+               background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fafafa),color-stop(1,#f5f5f5));
+            }
         </style>
 
         @yield('styles')
     </head>
     <body>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button 
@@ -122,7 +126,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         <i class="fa fa-share"></i>
                         {{ config('app.name') }}
                     </a>
@@ -130,10 +134,10 @@
                 <div id="navbar" class="navbar-collapse collapse">
 
                     <ul class="nav navbar-nav navbar-left">
-                        <li><a href="/home">Home</a></li>
+                        <li><a href="{{ url('/home') }}">Home</a></li>
 
                         @if (Auth::user())
-                            <li><a href="/files">Files</a></li>
+                            <li><a href="{{ url('/files') }}">Files</a></li>
                         @endif
                         
                     </ul>
@@ -142,14 +146,14 @@
 
                         @if (Auth::guest())
 
-                            <li><a href="/login">Login</a></li>
-                            <li><a href="/register">Register</a></li>
+                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            <li><a href="{{ url('/register') }}">Register</a></li>
 
                         @else
 
                             @can('dashboard')
 
-                                <li><a href="/dashboard">Dashboard</a></li>
+                                <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
 
                             @endcan
 
@@ -175,17 +179,17 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="/profile">
+                                        <a href="{{ url('/profile') }}">
                                             Profile
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/change_password">
+                                        <a href="{{ url('/change_password') }}">
                                             Change Password
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/logout">
+                                        <a href="{{ url('/logout') }}">
                                             <i class="fa fa-btn fa-sign-out"></i>
                                             Logout
                                         </a>
@@ -213,7 +217,7 @@
                         <hr>
                         <p style="padding-bottom: 8px;">
                             <b>
-                                <a href="/">
+                                <a href="{{ url('/') }}">
                                     {{ config('app.name') }}&copy;{{ date('Y') }}
                                 </a>
                             </b>

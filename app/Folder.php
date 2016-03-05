@@ -51,7 +51,7 @@ class Folder extends Model
             if(count($folders) === $index+1 && !$linkSelf){
                 $view .= sprintf($tplActive, $folder->name);
             }else{
-                $view .= sprintf($tpl, "/files/".$folder->id, $folder->name);
+                $view .= sprintf($tpl, url("/files/".$folder->id), $folder->name);
             }
         }
         return $view;

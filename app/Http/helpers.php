@@ -80,22 +80,30 @@ if(!function_exists('translate')){
     function translate(Activity $activity){
         switch ($activity->type) {
             case 'file_shared':
-                return "<a href='/profile/view/{$activity->user->id}'>"
+                return "<a href='"
+                .url('/profile/view/'.$activity->user->id)."'>"
                 ."<img class='img-profile-picture' src='".ppSrc($activity->user, 'xs')."'>"
                 ."{$activity->user->name}</a>"
                 ." has shared ".callUser($activity->user)
-                ." <a href='/file/view/".$activity->item_id."'>file</a>";
+                ." <a href='"
+                .url('/file/view/'.$activity->item_id)
+                ."'>file</a>";
             case 'user_created':
-                return "<a href='/profile/view/{$activity->user->id}'>"
+                return "<a href="
+                .url('/profile/view/'.$activity->user->id)."'>"
                 ."<img class='img-profile-picture' src='".ppSrc($activity->user, 'xs')."'>"
                 ."{$activity->user->name}</a>"
                 ." has joined the app";
             case 'profile_picture_updated':
-                return "<a href='/profile/view/{$activity->user->id}'>"
+                return "<a href='"
+                .url('/profile/view/'.$activity->user->id)
+                ."'>"
                 ."<img class='img-profile-picture' src='".ppSrc($activity->user, 'xs')."'>"
                 ."{$activity->user->name}</a>"
                 ." has updated ".callUser($activity->user)
-                ." <a href='/file/view/".$activity->item_id."'>profile picture</a>";
+                ." <a href='"
+                .url('/file/view/'.$activity->item_id)
+                ."'>profile picture</a>";
             default:
                 return "Unknown Activity ...";
         }

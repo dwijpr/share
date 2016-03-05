@@ -10,7 +10,7 @@
             </a>
         </li>
         <li>
-            <a href="/files/{{ $folder->id }}">
+            <a href="{{ url('/files/'.$folder->id) }}">
                 Back
             </a>
         </li>

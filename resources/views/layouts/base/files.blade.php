@@ -35,12 +35,12 @@
 
                         <ul class="nav nav-sidebar">
                             <li>
-                                <a href="/files/folder/new/{{ $folder->id }}">
+                                <a href="{{ url('/files/folder/new/'.$folder->id) }}">
                                     Create New Folder
                                 </a>
                             </li>
                             <li>
-                                <a href="/files/upload/{{ $folder->id }}">
+                                <a href="{{ url('/files/upload/'.$folder->id) }}">
                                     Upload File
                                 </a>
                             </li>
